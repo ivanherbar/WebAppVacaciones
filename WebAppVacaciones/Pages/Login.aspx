@@ -81,7 +81,7 @@
                 <div class="field password-container">
                     <label class="label">Contraseña</label>
                     <div class="control">
-                        <asp:TextBox runat="server" ID="clave" class="input" type="password" placeholder="ej. ******"></asp:TextBox>
+                        <asp:TextBox runat="server" ID="clave" class="input" type="password" placeholder="ej. ****"></asp:TextBox>
                         <!-- Icono de ojo para mostrar/ocultar contraseña -->
                         <i id="togglePasswordIcon" class="fas fa-eye toggle-password" onclick="togglePassword()"></i>
                     </div>
