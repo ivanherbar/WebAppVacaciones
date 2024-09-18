@@ -74,7 +74,7 @@
                 <div class="field">
                     <label class="label">Usuario</label>
                     <div class="control">
-                        <asp:TextBox runat="server" ID="usuario" class="input" type="text" placeholder="ej. ivanherbar"></asp:TextBox>
+                        <asp:TextBox runat="server" ID="usuario" class="input" type="text" placeholder="ej. master"></asp:TextBox>
                     </div>
                 </div>
 
