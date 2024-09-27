@@ -13,10 +13,16 @@ namespace WebAppVacaciones.Pages
         {
             Response.AppendHeader("Cache-Control", "no-store");
 
-
-            if (Session["usuario"] != null)
+            if (Session["usuario"] != null && Session["Id_rol"] != null)
             {
-                Label1.Text = Session["usuario"].ToString() + Session["Id_rol"];
+                string usuario = Session["usuario"].ToString();
+                int idRol = Convert.ToInt32(Session["Id_rol"]);
+
+                // Verificamos el rol y concatenamos el nombre adecuado
+                string rol = idRol == 1 ? "Administrador" : idRol == 2 ? "Usuario" : "Desconocido";
+
+                // Mostramos el texto en el label
+                Label1.Text = $"{rol} - {usuario}";
             }
             else
             {
