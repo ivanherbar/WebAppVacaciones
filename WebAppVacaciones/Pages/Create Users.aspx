@@ -7,8 +7,6 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
     <!-- Añadir CSS personalizado aquí -->
     <style>
-
-
         .custom-button:hover {
             background-color: #08a0de; /* Color de fondo al pasar el mouse */
         }
@@ -64,7 +62,11 @@
             <div class="field" id="empleadoField">
                 <label class="label">ID de Empleado (si aplica)</label>
                 <div class="control">
-                    <asp:TextBox CssClass="input" ID="txtIDEmpleado" runat="server" Placeholder="ID de Empleado"></asp:TextBox>
+                    <div class="select">
+                        <asp:DropDownList CssClass="input" ID="ddlIDEmpleado" runat="server"
+                            Enabled="false" AutoPostBack="true" OnSelectedIndexChanged="ddlIDEmpleado_SelectedIndexChanged">
+                        </asp:DropDownList>
+                    </div>
                 </div>
             </div>
 

@@ -72,6 +72,8 @@
   <ItemGroup>
     <Content Include="Img\gnt logo.png" />
     <Content Include="Img\Logo.png" />
+    <Content Include="Pages\CreateEmployee.aspx" />
+    <Content Include="Pages\ModUs.aspx" />
     <Content Include="Pages\Bienvenido.aspx" />
     <Content Include="Pages\Read Users.aspx" />
     <Content Include="Pages\Login.aspx" />
@@ -81,6 +83,20 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pages\CreateEmployee.aspx.cs">
+      <DependentUpon>CreateEmployee.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\CreateEmployee.aspx.designer.cs">
+      <DependentUpon>CreateEmployee.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ModUs.aspx.cs">
+      <DependentUpon>ModUs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ModUs.aspx.designer.cs">
+      <DependentUpon>ModUs.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Bienvenido.aspx.cs">
       <DependentUpon>Bienvenido.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -135,7 +151,6 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Pages\MP.Master" />
-    <None Include="Properties\PublishProfiles\WebAppVacaciones - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -143,7 +158,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Properties\PublishProfiles\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -44,12 +44,10 @@
 
                     <!-- Menú Administración -->
                     <div class="navbar-item has-dropdown is-hoverable">
-                        <a class="navbar-link">Gestión de Empleados</a>
+                        <a class="navbar-link" >Gestión de Empleados</a>
                         <div class="navbar-dropdown">
-                            <a class="navbar-item" href="ModificarUsuarios.aspx">Agregar Empleado</a>
-                            <a class="navbar-item" href="#">Consultar Empleados</a>
-                            <a class="navbar-item" href="#">Actualizar Empleado</a>
-                            <a class="navbar-item" href="#">Eliminar Empleado</a>
+                            <a class="navbar-item" href="CreateEmployee.aspx">Registar Empleado</a>
+                            <a class="navbar-item" href="ModUs.aspx">Consultar Empleado</a>
                         </div>
                     </div>
 
