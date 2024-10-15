@@ -1,132 +1,132 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Data;
-using System.Linq;
-using System.Web;
+using System.Data.SqlClient;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
 
 namespace WebAppVacaciones.Pages
 {
-    public partial class Index : System.Web.UI.Page
+    public partial class Index : Page
     {
-        int id_rol = 0;
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conexion"].ToString());
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            // Evitar caché en la página
             Response.AppendHeader("Cache-Control", "no-store");
 
+            // Cargar los datos y permisos si es la primera carga de la página
             if (!IsPostBack && Session["usuario"] != null)
             {
-                id_rol = Convert.ToInt32(Session["id_rol"].ToString());
-                Datos();
-                Permisos(id_rol);
+                int id_rol = Convert.ToInt32(Session["id_rol"]);
+                CargarDatos();
+                AsignarPermisos(id_rol);
             }
+        }
 
-
-            void Datos()
+        // Método para cargar los datos
+        private void CargarDatos()
+        {
+            try
             {
-                try
+                using (SqlCommand cmd = new SqlCommand("sp_datos", con))
                 {
-                    SqlCommand cmd = new SqlCommand("sp_datos", con);
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.CommandType = CommandType.StoredProcedure;
                     con.Open();
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
                     datos.DataSource = dt;
                     datos.DataBind();
-                    con.Close();
-
-                }
-                catch (Exception)
-                {
-
-                    throw;
                 }
             }
-
-
-            void Permisos(int id_rol)
+            catch (Exception ex)
             {
-                try
+                // Manejo del error: podrías agregar una notificación para el usuario
+                MostrarNotificacion("Error al cargar los datos: " + ex.Message, "error");
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+        // Método para asignar permisos basado en el rol
+        private void AsignarPermisos(int id_rol)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("sp_permisos", con))
                 {
-                    SqlCommand cmd = new SqlCommand("sp_permisos", con);
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add("@Id_rol", SqlDbType.Int).Value = id_rol;
+                    cmd.Parameters.AddWithValue("@Id_rol", id_rol);
+
                     con.Open();
-                    SqlDataReader reader = cmd.ExecuteReader();
-
-                    bool Create, Read, Update, Delete;
-                    while (reader.Read())
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        foreach (GridViewRow fila in datos.Rows)
-                        {
+                        bool canCreate = false, canRead = false, canUpdate = false, canDelete = false;
 
+                        while (reader.Read())
+                        {
                             switch (reader[0].ToString())
                             {
                                 case "Create":
-                                    Create = Convert.ToBoolean(reader[1].ToString());
-
-                                    if (Create)
-                                        btncreate.Visible = true;
-                                    else
-                                        btncreate.Visible = false;
-
+                                    canCreate = Convert.ToBoolean(reader[1]);
                                     break;
                                 case "Read":
-                                    Read = Convert.ToBoolean(reader[1].ToString());
-                                    Button btn1 = fila.FindControl("btnread") as Button;
-                                    if (Read)
-                                    {
-                                        btn1.Visible = true;
-                                        datos.Visible = true;
-                                    }
-                                    else
-                                    {
-                                        btn1.Visible = false;
-                                        datos.Visible = false;
-                                    }
-
+                                    canRead = Convert.ToBoolean(reader[1]);
                                     break;
                                 case "Update":
-                                    Update = Convert.ToBoolean(reader[1].ToString());
-                                    Button btn2 = fila.FindControl("btnupdate") as Button;
-
-                                    if (Update)
-                                        btn2.Visible = true;
-                                    else
-                                        btn2.Visible = false;
-
+                                    canUpdate = Convert.ToBoolean(reader[1]);
                                     break;
                                 case "Delete":
-                                    Delete = Convert.ToBoolean(reader[1].ToString());
-                                    Button btn3 = fila.FindControl("btndelete") as Button;
-
-                                    if (Delete)
-                                        btn3.Visible = true;
-                                    else
-                                        btn3.Visible = false;
-
+                                    canDelete = Convert.ToBoolean(reader[1]);
                                     break;
                             }
                         }
+
+                        // Aplicar permisos a los botones globales
+                        btncreate.Visible = canCreate;
+
+                        // Guardar permisos en la sesión para usar en el evento RowDataBound
+                        Session["canRead"] = canRead;
+                        Session["canUpdate"] = canUpdate;
+                        Session["canDelete"] = canDelete;
                     }
-
-
-                    con.Close();
-                    reader.Close();
                 }
-                catch (Exception)
-                {
-
-                    throw;
-                }
-
             }
+            catch (Exception ex)
+            {
+                MostrarNotificacion("Error al asignar permisos: " + ex.Message, "error");
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+        // Evento RowDataBound para aplicar permisos por fila
+        protected void datos_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                Button btnRead = (Button)e.Row.FindControl("btnread");
+                Button btnUpdate = (Button)e.Row.FindControl("btnupdate");
+                Button btnDelete = (Button)e.Row.FindControl("btndelete");
+
+                // Aplicar permisos por fila
+                btnRead.Visible = (bool)Session["canRead"];
+                btnUpdate.Visible = (bool)Session["canUpdate"];
+                btnDelete.Visible = (bool)Session["canDelete"];
+            }
+        }
+
+        // Método para mostrar notificaciones
+        private void MostrarNotificacion(string mensaje, string tipo)
+        {
+            string script = $"Swal.fire({{ text: '{mensaje}', icon: '{tipo}', timer: 3000, showConfirmButton: false }});";
+            ScriptManager.RegisterStartupScript(this, GetType(), "showNotification", script, true);
         }
     }
 }
