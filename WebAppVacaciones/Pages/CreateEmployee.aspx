@@ -9,9 +9,6 @@
     </style>
 </asp:Content>
 
-<!-- Este bloque se utiliza para incluir estilos CSS personalizados dentro de la sección "head" de la página maestra.
-     Aquí se define un estilo para el botón, que cambia su color de fondo cuando el usuario pasa el mouse por encima. -->
-
 <asp:Content ID="Content3" ContentPlaceHolderID="body" runat="server">
 
     <!-- Sección de la interfaz visual -->

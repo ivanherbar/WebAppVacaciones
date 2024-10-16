@@ -2,36 +2,45 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="server">
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
-      <style>
-      .custom-button:hover {
-          background-color: #08a0de; /* Color de fondo al pasar el mouse */
-      }
+    <style>
+        .boton-estandar {
+            width: 120px;
+            height: 40px;
+            font-size: 14px;
+            text-align: center;
+            padding: 10px;
+            margin-right: 5px;
+        }
 
-      .centered-container {
-          display: flex;
-          justify-content: center; /* Centrar horizontalmente */
-      }
+        .custom-button:hover {
+            background-color: #08a0de;
+        }
 
-      .container-custom {
-          max-width: 1200px; /* Ajustar el tamaño máximo del contenedor */
-          width: 100%; /* Asegurar que el contenedor ocupe el 100% del ancho disponible */
-      }
+        .centered-container {
+            display: flex;
+            justify-content: center;
+        }
 
-      .notification {
-          position: fixed;
-          top: 10px;
-          right: 10px;
-          z-index: 1000;
-          max-width: 300px;
-      }
-  </style>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- Biblioteca para notificaciones -->
+        .container-custom {
+            max-width: 1200px;
+            width: 100%;
+        }
 
+        .notification {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
+            max-width: 300px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="body" runat="server">
 
+<asp:Content ID="Content3" ContentPlaceHolderID="body" runat="server">
     <section class="hero custom-hero">
         <div class="hero-body">
             <div class="container">
@@ -41,9 +50,6 @@
             </div>
         </div>
     </section>
-
-
-    <!-- GridView para mostrar resultados -->
 
     <section class="section">
         <div class="centered-container">
@@ -55,34 +61,74 @@
                     </div>
                 </div>
 
-
-                <asp:GridView ID="gridDetallesEmpleado" runat="server" CssClass="table is-striped is-bordered is-hoverable" AutoGenerateColumns="false" >
+                <asp:GridView ID="gridDetallesEmpleado" runat="server" CssClass="table is-striped is-bordered is-hoverable" AutoGenerateColumns="false" OnRowCommand="gridDetallesEmpleado_RowCommand">
                     <Columns>
                         <asp:TemplateField HeaderText="Acciones">
                             <ItemTemplate>
-                                <asp:Button ID="btnConsultar" runat="server" Text="Consultar" CommandName="Consultar" CommandArgument='<%# Eval("Id_Usuario") %>' CssClass="button is-info" />
-                                <asp:Button ID="btnActualizar" runat="server" Text="Actualizar" CommandName="Actualizar" CommandArgument='<%# Eval("Id_Usuario") %>' CssClass="button is-warning" />
-                                <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CommandName="Eliminar" CommandArgument='<%# Eval("Id_Usuario") %>' CssClass="button is-danger" />
+                                <asp:Button ID="btnVacaciones" runat="server" Text="Vacaciones" CommandName="Consultar" CommandArgument='<%# Eval("ID_Empleado") %>' CssClass="button is-info boton-estandar" />
+                                <asp:Button ID="btnActualizar" runat="server" Text="Actualizar" CommandName="Actualizar" CommandArgument='<%# Eval("ID_Empleado") %>' CssClass="button is-warning boton-estandar" />
+                                <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CommandName="Eliminar" CommandArgument='<%# Eval("ID_Empleado") %>' CssClass="button is-danger boton-estandar" />
                             </ItemTemplate>
                         </asp:TemplateField>
+                        <asp:BoundField DataField="ID_Empleado" HeaderText="ID" />
+                        <asp:BoundField DataField="Usuario" HeaderText="Usuario" />
+                        <asp:BoundField DataField="Nombre_Rol" HeaderText="Rol" />
                         <asp:BoundField DataField="Nombre_Region" HeaderText="Región" />
                         <asp:BoundField DataField="Nombre_Plaza" HeaderText="Plaza" />
                         <asp:BoundField DataField="Nombre_PDV" HeaderText="PDV" />
-                        <asp:BoundField DataField="Usuario" HeaderText="Usuario" />
-                        <asp:BoundField DataField="Nombre_Rol" HeaderText="Rol" />
-                        <asp:BoundField DataField="Nombre_Empleado" HeaderText="Nombre" />
+                        <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
                         <asp:BoundField DataField="Puesto" HeaderText="Puesto" />
                         <asp:BoundField DataField="Fecha_Ingreso" HeaderText="Ingreso" DataFormatString="{0:yyyy-MM-dd}" />
+                        <asp:BoundField DataField="Mes_Aniversario" HeaderText="Mes Aniversario" />
+                        <asp:BoundField DataField="Año_Aniversario" HeaderText="Año Aniversario" />
                         <asp:BoundField DataField="Antigüedad" HeaderText="Antigüedad" />
                         <asp:BoundField DataField="Dias_por_Año" HeaderText="Días por Año" />
                         <asp:BoundField DataField="Dias_Disponibles" HeaderText="Días Disponibles" />
                         <asp:BoundField DataField="Dias_Disfrutados" HeaderText="Días Disfrutados" />
                     </Columns>
                 </asp:GridView>
-
             </div>
         </div>
     </section>
 
+    <!-- Modal para mostrar las vacaciones -->
+    <div class="modal" id="modalVacaciones">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Días de Vacaciones</p>
+
+            </header>
+            <section class="modal-card-body">
+                <asp:GridView ID="gridVacaciones" runat="server" CssClass="table is-striped is-bordered" AutoGenerateColumns="false" OnRowCommand="gridVacaciones_RowCommand">
+                    <Columns>
+                        <asp:BoundField DataField="ID_Empleado" HeaderText="ID Vacación" />
+                        <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
+                        <asp:BoundField DataField="TipoDia" HeaderText="TipoDia" />
+                        <asp:BoundField DataField="MedioDia" HeaderText="MedioDia" />
+                        <asp:TemplateField HeaderText="Acciones">
+                            <ItemTemplate>
+                                <asp:Button ID="btnAnular" runat="server" Text="Anular" CommandName="Anular" CommandArgument='<%# Eval("ID_Empleado") %>' CssClass="button is-danger boton-estandar" />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+                </asp:GridView>
+
+            </section>
+            <footer class="modal-card-foot">
+                <button class="button" onclick="cerrarModal()">Cerrar</button>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        function abrirModal() {
+            document.getElementById('modalVacaciones').classList.add('is-active');
+        }
+
+        function cerrarModal() {
+            document.getElementById('modalVacaciones').classList.remove('is-active');
+        }
+    </script>
 
 </asp:Content>

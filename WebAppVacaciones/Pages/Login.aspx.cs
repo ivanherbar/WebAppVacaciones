@@ -35,6 +35,7 @@ namespace WebAppVacaciones
                 {
                     Session["Id_rol"] = rd[4].ToString();
                     Session["usuario"] = rd[2].ToString();
+                    Session["Nombre"] = rd[1].ToString();
 
                     // Redirigir según el rol del usuario
                     if (Session["Id_rol"].ToString() == "1")
