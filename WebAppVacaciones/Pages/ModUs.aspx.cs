@@ -63,12 +63,10 @@ namespace WebAppVacaciones
                     break;
 
                 case "Actualizar":
-                    // Lógica para actualizar un registro
                     ActualizarRegistro(userId);
                     break;
 
                 case "Eliminar":
-                    // Lógica para eliminar un registro
                     EliminarRegistro(userId);
                     break;
             }
