@@ -18,7 +18,7 @@
             align-items: center;
             flex-direction: column;
         }
-
+            
         .password-container {
             position: relative;
         }

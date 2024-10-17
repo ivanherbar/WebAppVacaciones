@@ -139,6 +139,13 @@
     <Compile Include="Pages\Create Users.aspx.designer.cs">
       <DependentUpon>Create Users.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Empleado.Master.cs">
+      <DependentUpon>Empleado.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Empleado.Master.designer.cs">
+      <DependentUpon>Empleado.Master</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Update Users.aspx.cs">
       <DependentUpon>Update Users.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -146,11 +153,11 @@
     <Compile Include="Pages\Update Users.aspx.designer.cs">
       <DependentUpon>Update Users.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Pages\MP.Master" />
+    <Content Include="Pages\Empleado.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
