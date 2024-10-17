@@ -73,6 +73,7 @@
     <Content Include="Img\gnt logo.png" />
     <Content Include="Img\Logo.png" />
     <Content Include="Pages\CreateEmployee.aspx" />
+    <Content Include="Pages\ConsultaEmpleado.aspx" />
     <Content Include="Pages\ModUs.aspx" />
     <Content Include="Pages\Bienvenido.aspx" />
     <Content Include="Pages\Read Users.aspx" />
@@ -89,6 +90,13 @@
     </Compile>
     <Compile Include="Pages\CreateEmployee.aspx.designer.cs">
       <DependentUpon>CreateEmployee.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ConsultaEmpleado.aspx.cs">
+      <DependentUpon>ConsultaEmpleado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ConsultaEmpleado.aspx.designer.cs">
+      <DependentUpon>ConsultaEmpleado.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\ModUs.aspx.cs">
       <DependentUpon>ModUs.aspx</DependentUpon>

@@ -1,6 +1,5 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Empleado.Master.cs" Inherits="WebAppVacaciones.Pages.Site1" %>
 
-
 <!DOCTYPE html>
 
 <html>
@@ -34,23 +33,6 @@
                         <img src="../Img/Logo.png" />
                     </a>
 
-                    <!-- Menú Consultas -->
-                    <div class="navbar-item has-dropdown is-hoverable">
-                        <a class="navbar-link">Gestión de Usuarios</a>
-                        <div class="navbar-dropdown">
-                            <a class="navbar-item" href="Create Users.aspx">Registar Usuario</a>
-                            <a class="navbar-item" href="Read Users.aspx">Consultar Usuario</a>
-                        </div>
-                    </div>
-
-                    <!-- Menú Administración -->
-                    <div class="navbar-item has-dropdown is-hoverable">
-                        <a class="navbar-link" >Gestión de Empleados</a>
-                        <div class="navbar-dropdown">
-                            <a class="navbar-item" href="CreateEmployee.aspx">Registar Empleado</a>
-                            <a class="navbar-item" href="ModUs.aspx">Consultar Empleado</a>
-                        </div>
-                    </div>
 
                     <!-- Información del usuario en la esquina derecha -->
                     <div class="navbar-end">
@@ -85,4 +67,3 @@
 
 </body>
 </html>
-
