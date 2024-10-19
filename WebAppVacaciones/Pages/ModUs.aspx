@@ -102,15 +102,22 @@
             <section class="modal-card-body">
                 <asp:GridView ID="gridVacaciones" runat="server" CssClass="table is-striped is-bordered" AutoGenerateColumns="false" OnRowCommand="gridVacaciones_RowCommand">
                     <Columns>
-                        <asp:BoundField DataField="ID_Empleado" HeaderText="ID Vacación" />
+                        <asp:BoundField DataField="ID_Empleado" HeaderText="ID Empleado" />
                         <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
+                        <asp:BoundField DataField="Fecha" HeaderText="Fecha" />
                         <asp:BoundField DataField="TipoDia" HeaderText="TipoDia" />
-                        <asp:BoundField DataField="MedioDia" HeaderText="MedioDia" />
                         <asp:TemplateField HeaderText="Acciones">
                             <ItemTemplate>
-                                <asp:Button ID="btnAnular" runat="server" Text="Anular" CommandName="Anular" CommandArgument='<%# Eval("ID_Empleado") %>' CssClass="button is-danger boton-estandar" />
+                                <asp:Button
+                                    ID="btnAnular"
+                                    runat="server"
+                                    Text="Anular"
+                                    CommandName="Anular"
+                                    CommandArgument='<%# Eval("ID_Empleado") + "," + Eval("Fecha", "{0:yyyy-MM-dd}") + "," + Eval("MedioDia") %>'
+                                    CssClass="button is-danger boton-estandar" />
                             </ItemTemplate>
                         </asp:TemplateField>
+
                     </Columns>
                 </asp:GridView>
 

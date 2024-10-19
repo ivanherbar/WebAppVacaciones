@@ -11,7 +11,7 @@ namespace WebAppVacaciones.Pages
 {
 
 
-    public partial class Site1
+    public partial class Empleado_Master
     {
 
         /// <summary>

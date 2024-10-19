@@ -72,8 +72,8 @@
   <ItemGroup>
     <Content Include="Img\gnt logo.png" />
     <Content Include="Img\Logo.png" />
-    <Content Include="Pages\CreateEmployee.aspx" />
     <Content Include="Pages\ConsultaEmpleado.aspx" />
+    <Content Include="Pages\CreateEmployee.aspx" />
     <Content Include="Pages\ModUs.aspx" />
     <Content Include="Pages\Bienvenido.aspx" />
     <Content Include="Pages\Read Users.aspx" />
@@ -84,6 +84,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pages\ConsultaEmpleado.aspx.cs">
+      <DependentUpon>ConsultaEmpleado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ConsultaEmpleado.aspx.designer.cs">
+      <DependentUpon>ConsultaEmpleado.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\CreateEmployee.aspx.cs">
       <DependentUpon>CreateEmployee.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -91,12 +98,12 @@
     <Compile Include="Pages\CreateEmployee.aspx.designer.cs">
       <DependentUpon>CreateEmployee.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\ConsultaEmpleado.aspx.cs">
-      <DependentUpon>ConsultaEmpleado.aspx</DependentUpon>
+    <Compile Include="Pages\Empleado.Master.Master.cs">
+      <DependentUpon>Empleado.Master.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\ConsultaEmpleado.aspx.designer.cs">
-      <DependentUpon>ConsultaEmpleado.aspx</DependentUpon>
+    <Compile Include="Pages\Empleado.Master.Master.designer.cs">
+      <DependentUpon>Empleado.Master.Master</DependentUpon>
     </Compile>
     <Compile Include="Pages\ModUs.aspx.cs">
       <DependentUpon>ModUs.aspx</DependentUpon>
@@ -147,13 +154,6 @@
     <Compile Include="Pages\Create Users.aspx.designer.cs">
       <DependentUpon>Create Users.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Empleado.Master.cs">
-      <DependentUpon>Empleado.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Empleado.Master.designer.cs">
-      <DependentUpon>Empleado.Master</DependentUpon>
-    </Compile>
     <Compile Include="Pages\Update Users.aspx.cs">
       <DependentUpon>Update Users.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -165,7 +165,7 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Pages\MP.Master" />
-    <Content Include="Pages\Empleado.Master" />
+    <Content Include="Pages\Empleado.Master.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -11,17 +11,7 @@ namespace WebAppVacaciones.Pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Response.AppendHeader("Cache-Control", "no-store");
 
-
-            if (Session["usuario"] != null)
-            {
-                Label1.Text = Session["Nombre"].ToString() + " - " + Session["usuario"].ToString();
-            }
-            else
-            {
-                Label1.Text = string.Empty;
-            }
         }
     }
 }

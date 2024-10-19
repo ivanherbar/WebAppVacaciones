@@ -58,7 +58,7 @@ namespace WebAppVacaciones
                     break;
                 case "Eliminar":
                     EliminarRegistro(userId);
-                    break;
+                break;
             }
         }
 
@@ -78,14 +78,26 @@ namespace WebAppVacaciones
                     DataTable dt = new DataTable();
                     dt.Load(reader);
 
-                    gridVacaciones.DataSource = dt;
-                    gridVacaciones.DataBind();
+                    // Verificar si la tabla tiene registros
+                    if (dt.Rows.Count > 0)
+                    {
+                        // Mostrar los datos de vacaciones en el grid
+                        gridVacaciones.DataSource = dt;
+                        gridVacaciones.DataBind();
+
+                        // Abrir el modal para mostrar los registros de vacaciones
+                        ScriptManager.RegisterStartupScript(this, GetType(), "abrirModal", "abrirModal();", true);
+                    }
+                    else
+                    {
+                        // Si no hay registros, mostrar alerta con SweetAlert
+                        ScriptManager.RegisterStartupScript(this, GetType(), "alerta", "Swal.fire('Sin registro de vacaciones', '', 'warning');", true);
+                    }
                 }
             }
-
-            // Abre el modal desde el lado del servidor
-            ScriptManager.RegisterStartupScript(this, GetType(), "abrirModal", "abrirModal();", true);
         }
+
+
 
         private void ActualizarRegistro(int userId)
         {
@@ -99,35 +111,56 @@ namespace WebAppVacaciones
 
         protected void gridVacaciones_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int vacationId = Convert.ToInt32(e.CommandArgument);
-            switch (e.CommandName)
+            if (e.CommandName == "Anular")
             {
-                case "Anular":
-                    AnularVacacion(vacationId);
-                    break;
+                // Extraer los valores concatenados en el CommandArgument
+                string[] argumentos = e.CommandArgument.ToString().Split(',');
+                int idEmpleado = Convert.ToInt32(argumentos[0]); // ID_Empleado
+                DateTime fecha = Convert.ToDateTime(argumentos[1]); // Fecha
+                string medioDia = argumentos[2]; // MedioDia
+
+                // Llamar al método que anula la vacación
+                AnularVacacion(idEmpleado, fecha, medioDia);
             }
         }
 
-        private void AnularVacacion(int vacationId)
+
+        private void AnularVacacion(int idEmpleado, DateTime fecha, string medioDia)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
 
             using (SqlConnection con = new SqlConnection(connectionString))
             {
-                using (SqlCommand command = new SqlCommand("AnularVacacion", con))
+                try
                 {
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@ID_Empleado", vacationId);
+                    using (SqlCommand cmd = new SqlCommand("AnularDiaVacacionesPorFecha", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
 
-                    con.Open();
-                    command.ExecuteNonQuery();
+                        // Agregar parámetros
+                        cmd.Parameters.AddWithValue("@ID_Empleado", idEmpleado);
+                        cmd.Parameters.AddWithValue("@Fecha", fecha);
+                        cmd.Parameters.AddWithValue("@MedioDia", medioDia);
+
+                        // Abrir conexión
+                        con.Open();
+
+                        // Ejecutar el procedimiento almacenado
+                        cmd.ExecuteNonQuery();
+
+                        // Mostrar mensaje de éxito
+                        ScriptManager.RegisterStartupScript(this, GetType(), "alerta", "Swal.fire('Registro anulado con éxito', '', 'success');", true);
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    // Capturar el mensaje de error generado por RAISERROR en el procedimiento almacenado
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alerta", $"Swal.fire('Error', '{ex.Message}', 'error');", true);
                 }
             }
-
-            // Recargar las vacaciones después de anular
-            ScriptManager.RegisterStartupScript(this, GetType(), "cerrarModal", "cerrarModal();", true);
-            CargarVacaciones(Convert.ToInt32(Session["EmpleadoID"])); // Asegúrate de que tienes el ID del empleado
         }
+
+
 
     }
 }
