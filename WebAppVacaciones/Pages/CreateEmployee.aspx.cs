@@ -131,8 +131,10 @@ namespace WebAppVacaciones.Pages
                 {
                     // Abrir la conexión e insertar el empleado
                     con.Open();
-                    int empleadoId = Convert.ToInt32(cmd.ExecuteScalar()); // Obtener el ID del empleado registrado
-                    MostrarMensaje("Empleado registrado con éxito. ID: " + empleadoId, false);
+                    int empleadoId = Convert.ToInt32(cmd.ExecuteScalar()); // Obtener el ID del empleado 
+                    // Mostrar el mensaje de éxito y redirigir después 1 seg
+                    string script = $"alert('Empleado registrado con éxito. ID: {empleadoId}'); setTimeout(function(){{ window.location = 'Bienvenido.aspx'; }}, 1000);";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "registroExitoso", script, true);
                 }
                 catch (Exception ex)
                 {
