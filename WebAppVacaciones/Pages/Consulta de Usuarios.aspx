@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/MP.Master" AutoEventWireup="true" CodeBehind="Read Users.aspx.cs" Inherits="WebAppVacaciones.Pages.ConsultarUsuarios" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/MP.Master" AutoEventWireup="true" CodeBehind="Consulta de Usuarios.aspx.cs" Inherits="WebAppVacaciones.Pages.ConsultarUsuarios" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="server">
     Consulta de Usuarios
@@ -29,7 +29,8 @@
         }
     </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- Biblioteca para notificaciones -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Biblioteca para notificaciones -->
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="body" runat="server">
@@ -58,14 +59,19 @@
                         <asp:BoundField DataField="Id_Usuario" HeaderText="ID" />
                         <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
                         <asp:BoundField DataField="Usuario" HeaderText="Usuario" />
+                        <asp:BoundField DataField="Clave" HeaderText="Contraseña" />
                         <asp:BoundField DataField="Id_Rol" HeaderText="Rol" />
                         <asp:BoundField DataField="ID_Empleado" HeaderText="ID Empleado" />
                         <asp:TemplateField>
                             <ItemTemplate>
-                                <a class="button is-info is-small custom-button" href="Update Users.aspx">Modificar</a>
-                                <asp:LinkButton ID="btnEliminar" runat="server" CssClass="button is-danger is-small custom-button" Text="Eliminar" OnClick="btnEliminar_Click" CommandArgument='<%# Eval("Id_Usuario") %>'></asp:LinkButton>
+                                <asp:LinkButton ID="btnModificar" runat="server" CssClass="button is-info is-small custom-button"
+                                    Text="Modificar" CommandArgument='<%# Eval("Id_Usuario") %>'
+                                    OnClick="btnModificar_Click" />
+                                <asp:LinkButton ID="btnEliminar" runat="server" CssClass="button is-danger is-small custom-button"
+                                    Text="Eliminar" OnClick="btnEliminar_Click" CommandArgument='<%# Eval("Id_Usuario") %>' />
                             </ItemTemplate>
                         </asp:TemplateField>
+
                     </Columns>
                 </asp:GridView>
             </div>

@@ -16,7 +16,7 @@ namespace WebAppVacaciones.Pages
 
             if (Session["usuario"] != null)
             {
-                Label1.Text = Session["Nombre"].ToString() +" - " +  Session["usuario"].ToString();
+                Label1.Text = Session["Nombre"].ToString() + " - " + Session["usuario"].ToString();
             }
             else
             {

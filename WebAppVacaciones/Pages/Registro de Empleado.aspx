@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/MP.Master" AutoEventWireup="true" CodeBehind="CreateEmployee.aspx.cs" Inherits="WebAppVacaciones.Pages.CreateEmployee" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/MP.Master" AutoEventWireup="true" CodeBehind="Registro de Empleado.aspx.cs" Inherits="WebAppVacaciones.Registro_de_Empleado" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
@@ -8,9 +8,8 @@
         }
     </style>
 </asp:Content>
-
 <asp:Content ID="Content3" ContentPlaceHolderID="body" runat="server">
-
+    
     <!-- Sección de la interfaz visual -->
     <section class="hero custom-hero">
         <div class="hero-body">
@@ -80,4 +79,5 @@
             </div>
         </div>
     </section>
+
 </asp:Content>

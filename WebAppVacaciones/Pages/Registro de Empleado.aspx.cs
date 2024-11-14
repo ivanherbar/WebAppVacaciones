@@ -1,15 +1,17 @@
 ﻿using System;
-using System.Data;
-using System.Data.SqlClient;
+using System.Collections.Generic;
 using System.Configuration;
-using System.Web.UI.WebControls;
+using System.Data.SqlClient;
+using System.Data;
+using System.Linq;
+using System.Web;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 
-namespace WebAppVacaciones.Pages
+namespace WebAppVacaciones
 {
-    public partial class CreateEmployee : System.Web.UI.Page
+    public partial class Registro_de_Empleado : System.Web.UI.Page
     {
-        // Este método se ejecuta cuando la página se carga
         protected void Page_Load(object sender, EventArgs e)
         {
             // Verifica si la página se está cargando por primera vez (no un postback)
@@ -20,6 +22,7 @@ namespace WebAppVacaciones.Pages
                 CargarPuestos(); // Cargar el DropDownList de Puestos desde la base de datos
             }
         }
+
 
         // Método para cargar el DropDownList de PDV (Punto de Venta) desde la base de datos
         private void CargarPDV()
@@ -132,7 +135,7 @@ namespace WebAppVacaciones.Pages
                     // Abrir la conexión e insertar el empleado
                     con.Open();
                     int empleadoId = Convert.ToInt32(cmd.ExecuteScalar()); // Obtener el ID del empleado registrado
-                    MostrarMensaje("Empleado registrado con éxito. ID: " + empleadoId, false);
+                    MostrarMensaje("Empleado registrado con éxito. ", false);
                 }
                 catch (Exception ex)
                 {

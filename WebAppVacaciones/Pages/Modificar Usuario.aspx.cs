@@ -1,23 +1,57 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Data;
-using System.Configuration;
+using System.Linq;
+using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace WebAppVacaciones.Pages
 {
-    public partial class Registro_de_Usuarios : System.Web.UI.Page
+    public partial class Modificar_Usuario : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                // Inicialización al cargar la página
                 ddlRol_SelectedIndexChanged(null, EventArgs.Empty);
-                CargarEmpleadosSinUsuario(); // Cargar empleados al iniciar
+                CargarEmpleadosSinUsuario();
+
+                if (Request.QueryString["Id_Usuario"] != null)
+                {
+                    int idUsuario = int.Parse(Request.QueryString["Id_Usuario"]);
+                    CargarUsuario(idUsuario);
+                }
             }
         }
+
+
+        private void CargarUsuario(int idUsuario)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand("SELECT Nombre, Usuario, Clave, Id_Rol, ID_Empleado FROM Usuarios WHERE Id_Usuario = @Id_Usuario", conn))
+                {
+                    cmd.Parameters.AddWithValue("@Id_Usuario", idUsuario);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        txtNombre.Text = reader["Nombre"].ToString();
+                        txtUsuario.Text = reader["Usuario"].ToString();
+                        txtClave.Text = reader["Clave"].ToString();
+                        ddlRol.SelectedValue = reader["Id_Rol"].ToString();
+                        ddlIDEmpleado.SelectedValue = reader["ID_Empleado"] != DBNull.Value ? reader["ID_Empleado"].ToString() : "";
+                    }
+                }
+            }
+        }
+
 
         protected void ddlRol_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -101,63 +135,29 @@ namespace WebAppVacaciones.Pages
             }
         }
 
-        protected void btnRegistrar_Click(object sender, EventArgs e)
+        protected void btnModificar_Click(object sender, EventArgs e)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                try
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand("UPDATE Usuarios SET Nombre = @Nombre, Usuario = @Usuario, Clave = @Clave, Id_Rol = @Id_Rol, ID_Empleado = @ID_Empleado WHERE Id_Usuario = @Id_Usuario", conn))
                 {
-                    conn.Open();
+                    cmd.Parameters.AddWithValue("@Nombre", txtNombre.Text);
+                    cmd.Parameters.AddWithValue("@Usuario", txtUsuario.Text);
+                    cmd.Parameters.AddWithValue("@Clave", txtClave.Text);
+                    cmd.Parameters.AddWithValue("@Id_Rol", ddlRol.SelectedValue);
+                    cmd.Parameters.AddWithValue("@ID_Empleado", ddlIDEmpleado.SelectedValue);
+                    cmd.Parameters.AddWithValue("@Id_Usuario", Request.QueryString["Id_Usuario"]);
 
-                    using (SqlCommand cmd = new SqlCommand("sp_registrar", conn))
-                    {
-                        cmd.CommandType = CommandType.StoredProcedure;
-
-                        cmd.Parameters.AddWithValue("@Nombre", txtNombre.Text);
-                        cmd.Parameters.AddWithValue("@Usuario", txtUsuario.Text);
-                        cmd.Parameters.AddWithValue("@Clave", txtClave.Text);
-                        cmd.Parameters.AddWithValue("@Id_rol", ddlRol.SelectedValue);
-                        cmd.Parameters.AddWithValue("@Patron", "VacacionesGNTTel");
-
-                        if (ddlRol.SelectedValue == "2" && ddlIDEmpleado.SelectedValue != "0")
-                        {
-                            cmd.Parameters.AddWithValue("@ID_Empleado", ddlIDEmpleado.SelectedValue);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@ID_Empleado", DBNull.Value);
-                        }
-
-                        // Parámetro de salida para obtener el resultado del procedimiento almacenado
-                        SqlParameter resultadoParam = new SqlParameter("@Resultado", SqlDbType.Int);
-                        resultadoParam.Direction = ParameterDirection.Output;
-                        cmd.Parameters.Add(resultadoParam);
-
-                        cmd.ExecuteNonQuery();
-
-                        int resultado = Convert.ToInt32(resultadoParam.Value);
-
-                        if (resultado == 1)
-                        {
-                            // Usuario ya existe
-                            ScriptManager.RegisterStartupScript(this, GetType(), "usuarioExiste", "alert('El nombre de usuario ya existe.');", true);
-                        }
-                        else
-                        {
-                            // Usuario registrado con éxito
-                            ScriptManager.RegisterStartupScript(this, GetType(), "registroExitoso", "alert('Usuario registrado con éxito');", true);
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    // Mensaje de error
-                    ScriptManager.RegisterStartupScript(this, GetType(), "registroError", $"alert('Error al registrar el usuario: {ex.Message}');", true);
+                    cmd.ExecuteNonQuery();
                 }
             }
+
+            lblMensaje.Text = "Usuario modificado exitosamente.";
+            lblMensaje.CssClass = "has-text-success";
         }
+
     }
 }
- 

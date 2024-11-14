@@ -58,7 +58,7 @@ namespace WebAppVacaciones
                     break;
                 case "Eliminar":
                     EliminarRegistro(userId);
-                break;
+                    break;
             }
         }
 

@@ -18,6 +18,7 @@ namespace WebAppVacaciones.Pages
         }
 
         // Método para cargar la lista de usuarios
+        // Método para cargar la lista de usuarios usando el procedimiento almacenado
         private void CargarUsuarios(string filtro = "")
         {
             string connectionString = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
@@ -27,15 +28,12 @@ namespace WebAppVacaciones.Pages
                 try
                 {
                     con.Open();
-                    string query = "SELECT * FROM Usuarios";
-
-                    if (!string.IsNullOrEmpty(filtro))
+                    // Llama al procedimiento almacenado en lugar de usar una consulta SQL
+                    using (SqlCommand cmd = new SqlCommand("sp_visualizarUsuarios", con))
                     {
-                        query += " WHERE Nombre LIKE @Filtro OR Usuario LIKE @Filtro";
-                    }
+                        cmd.CommandType = CommandType.StoredProcedure;
 
-                    using (SqlCommand cmd = new SqlCommand(query, con))
-                    {
+                        // Agrega el parámetro de filtro al procedimiento almacenado si se proporciona uno
                         if (!string.IsNullOrEmpty(filtro))
                         {
                             cmd.Parameters.AddWithValue("@Filtro", "%" + filtro + "%");
@@ -55,6 +53,7 @@ namespace WebAppVacaciones.Pages
                 }
             }
         }
+
 
         // Método para manejar el evento de cambio de texto en el TextBox de búsqueda
         protected void txtSearch_TextChanged(object sender, EventArgs e)
@@ -121,5 +120,12 @@ namespace WebAppVacaciones.Pages
             string script = $"Swal.fire({{ text: '{mensaje}', icon: '{tipo}', timer: 3000, showConfirmButton: false }});";
             ScriptManager.RegisterStartupScript(this, GetType(), "showNotification", script, true);
         }
+
+        protected void btnModificar_Click(object sender, EventArgs e)
+        {
+            string idUsuario = (sender as LinkButton).CommandArgument;
+            Response.Redirect("Modificar Usuario.aspx?Id_Usuario=" + idUsuario);
+        }
+
     }
 }

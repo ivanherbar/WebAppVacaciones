@@ -88,7 +88,7 @@
                 </div>
 
                 <div class="has-text-centered">
-                    <asp:Button runat="server" ID="ingresar" class="button" Text="Ingresar." OnClick="ingresar_Click" Style="background-color: #08a0de; color: white;" />
+                    <asp:Button runat="server" ID="ingresar" class="button" Text="Ingresar" OnClick="ingresar_Click" Style="background-color: #08a0de; color: white;" />
                 </div>
 
             </div>

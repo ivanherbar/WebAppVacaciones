@@ -73,14 +73,13 @@
     <Content Include="Img\gnt logo.png" />
     <Content Include="Img\Logo.png" />
     <Content Include="Pages\ConsultaEmpleado.aspx" />
-    <Content Include="Pages\CreateEmployee.aspx" />
-    <Content Include="Pages\ModUs.aspx" />
+    <Content Include="Pages\Gestion de Empleados.aspx" />
     <Content Include="Pages\Bienvenido.aspx" />
-    <Content Include="Pages\Read Users.aspx" />
+    <Content Include="Pages\Consulta de Usuarios.aspx" />
     <Content Include="Pages\Login.aspx" />
-    <Content Include="Pages\ModificarUsuarios.aspx" />
-    <Content Include="Pages\Create Users.aspx" />
-    <Content Include="Pages\Update Users.aspx" />
+    <Content Include="Pages\Modificar Usuario.aspx" />
+    <Content Include="Pages\Registro de Usuarios.aspx" />
+    <Content Include="Pages\Registro de Empleado.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -91,13 +90,6 @@
     <Compile Include="Pages\ConsultaEmpleado.aspx.designer.cs">
       <DependentUpon>ConsultaEmpleado.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\CreateEmployee.aspx.cs">
-      <DependentUpon>CreateEmployee.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\CreateEmployee.aspx.designer.cs">
-      <DependentUpon>CreateEmployee.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Pages\Empleado.Master.Master.cs">
       <DependentUpon>Empleado.Master.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -105,12 +97,12 @@
     <Compile Include="Pages\Empleado.Master.Master.designer.cs">
       <DependentUpon>Empleado.Master.Master</DependentUpon>
     </Compile>
-    <Compile Include="Pages\ModUs.aspx.cs">
-      <DependentUpon>ModUs.aspx</DependentUpon>
+    <Compile Include="Pages\Gestion de Empleados.aspx.cs">
+      <DependentUpon>Gestion de Empleados.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\ModUs.aspx.designer.cs">
-      <DependentUpon>ModUs.aspx</DependentUpon>
+    <Compile Include="Pages\Gestion de Empleados.aspx.designer.cs">
+      <DependentUpon>Gestion de Empleados.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Bienvenido.aspx.cs">
       <DependentUpon>Bienvenido.aspx</DependentUpon>
@@ -119,12 +111,12 @@
     <Compile Include="Pages\Bienvenido.aspx.designer.cs">
       <DependentUpon>Bienvenido.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Read Users.aspx.cs">
-      <DependentUpon>Read Users.aspx</DependentUpon>
+    <Compile Include="Pages\Consulta de Usuarios.aspx.cs">
+      <DependentUpon>Consulta de Usuarios.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\Read Users.aspx.designer.cs">
-      <DependentUpon>Read Users.aspx</DependentUpon>
+    <Compile Include="Pages\Consulta de Usuarios.aspx.designer.cs">
+      <DependentUpon>Consulta de Usuarios.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -133,12 +125,12 @@
     <Compile Include="Pages\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\ModificarUsuarios.aspx.cs">
-      <DependentUpon>ModificarUsuarios.aspx</DependentUpon>
+    <Compile Include="Pages\Modificar Usuario.aspx.cs">
+      <DependentUpon>Modificar Usuario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\ModificarUsuarios.aspx.designer.cs">
-      <DependentUpon>ModificarUsuarios.aspx</DependentUpon>
+    <Compile Include="Pages\Modificar Usuario.aspx.designer.cs">
+      <DependentUpon>Modificar Usuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\MP.Master.cs">
       <DependentUpon>MP.Master</DependentUpon>
@@ -147,19 +139,19 @@
     <Compile Include="Pages\MP.Master.designer.cs">
       <DependentUpon>MP.Master</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Create Users.aspx.cs">
-      <DependentUpon>Create Users.aspx</DependentUpon>
+    <Compile Include="Pages\Registro de Usuarios.aspx.cs">
+      <DependentUpon>Registro de Usuarios.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\Create Users.aspx.designer.cs">
-      <DependentUpon>Create Users.aspx</DependentUpon>
+    <Compile Include="Pages\Registro de Usuarios.aspx.designer.cs">
+      <DependentUpon>Registro de Usuarios.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Update Users.aspx.cs">
-      <DependentUpon>Update Users.aspx</DependentUpon>
+    <Compile Include="Pages\Registro de Empleado.aspx.cs">
+      <DependentUpon>Registro de Empleado.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\Update Users.aspx.designer.cs">
-      <DependentUpon>Update Users.aspx</DependentUpon>
+    <Compile Include="Pages\Registro de Empleado.aspx.designer.cs">
+      <DependentUpon>Registro de Empleado.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

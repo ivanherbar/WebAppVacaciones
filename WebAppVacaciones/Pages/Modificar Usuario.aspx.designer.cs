@@ -11,7 +11,7 @@ namespace WebAppVacaciones.Pages
 {
 
 
-    public partial class CreateEmployee
+    public partial class Modificar_Usuario
     {
 
         /// <summary>
@@ -24,39 +24,57 @@ namespace WebAppVacaciones.Pages
         protected global::System.Web.UI.WebControls.TextBox txtNombre;
 
         /// <summary>
-        /// Control DropDownListPuesto.
+        /// Control txtUsuario.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownListPuesto;
+        protected global::System.Web.UI.WebControls.TextBox txtUsuario;
 
         /// <summary>
-        /// Control TextFechaIngreso.
+        /// Control txtClave.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextFechaIngreso;
+        protected global::System.Web.UI.WebControls.TextBox txtClave;
 
         /// <summary>
-        /// Control ddlPDV.
+        /// Control ddlRol.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPDV;
+        protected global::System.Web.UI.WebControls.DropDownList ddlRol;
 
         /// <summary>
-        /// Control btnRegistrar.
+        /// Control ddlIDEmpleado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnRegistrar;
+        protected global::System.Web.UI.WebControls.DropDownList ddlIDEmpleado;
+
+        /// <summary>
+        /// Control btnModificar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnModificar;
+
+        /// <summary>
+        /// Control lblMensaje.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMensaje;
     }
 }

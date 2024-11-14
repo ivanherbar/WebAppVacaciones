@@ -37,17 +37,17 @@
                     <div class="navbar-item has-dropdown is-hoverable">
                         <a class="navbar-link">Gestión de Usuarios</a>
                         <div class="navbar-dropdown">
-                            <a class="navbar-item" href="Create Users.aspx">Registar Usuario</a>
-                            <a class="navbar-item" href="Read Users.aspx">Consultar Usuario</a>
+                            <a class="navbar-item" href="Registro de Usuarios.aspx">Registar Usuario</a>
+                            <a class="navbar-item" href="Consulta de Usuarios.aspx">Consultar Usuario</a>
                         </div>
                     </div>
 
                     <!-- Menú Administración -->
                     <div class="navbar-item has-dropdown is-hoverable">
-                        <a class="navbar-link" >Gestión de Empleados</a>
+                        <a class="navbar-link">Gestión de Empleados</a>
                         <div class="navbar-dropdown">
-                            <a class="navbar-item" href="CreateEmployee.aspx">Registar Empleado</a>
-                            <a class="navbar-item" href="ModUs.aspx">Consultar Empleado</a>
+                            <a class="navbar-item" href="Registro de Empleado.aspx">Registar Empleado</a>
+                            <a class="navbar-item" href="Gestion de Empleados.aspx">Consultar Empleado</a>
                         </div>
                     </div>
 
@@ -58,7 +58,7 @@
                             <div class="navbar-dropdown is-right">
                                 <a class="navbar-item" href="#">Configuración de Perfil</a>
                                 <hr class="navbar-divider">
-                                <a class="navbar-item" href="Login.aspx">Cerrar Sesión</a>
+                                <a class="navbar-item" href="#" runat="server" onserverclick="Logout_Click">Cerrar Sesión</a>
                             </div>
                         </div>
                     </div>
