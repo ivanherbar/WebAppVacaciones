@@ -149,8 +149,9 @@ namespace WebAppVacaciones.Pages
                         }
                         else
                         {
-                            // Usuario registrado con éxito
-                            ScriptManager.RegisterStartupScript(this, GetType(), "registroExitoso", "alert('Usuario registrado con éxito');", true);
+                            // Usuario registrado con éxito, mostrar alerta y redirigir después de 1 segundo
+                            ScriptManager.RegisterStartupScript(this, GetType(), "registroExitoso", "alert('Usuario registrado con éxito'); setTimeout(function(){ window.location = 'Bienvenido.aspx'; }, 1000);", true);
+
                         }
                     }
                 }
