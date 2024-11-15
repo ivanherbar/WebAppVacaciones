@@ -72,17 +72,25 @@
   <ItemGroup>
     <Content Include="Img\gnt logo.png" />
     <Content Include="Img\Logo.png" />
+    <Content Include="Pages\Consulta de Empleados Sin Usuario.aspx" />
     <Content Include="Pages\ConsultaEmpleado.aspx" />
-    <Content Include="Pages\Gestion de Empleados.aspx" />
+    <Content Include="Pages\Consulta de Empleados.aspx" />
     <Content Include="Pages\Bienvenido.aspx" />
     <Content Include="Pages\Consulta de Usuarios.aspx" />
     <Content Include="Pages\Login.aspx" />
     <Content Include="Pages\Modificar Usuario.aspx" />
     <Content Include="Pages\Registro de Usuarios.aspx" />
-    <Content Include="Pages\Registro de Empleado.aspx" />
+    <Content Include="Pages\Registro de Empleados.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pages\Consulta de Empleados Sin Usuario.aspx.cs">
+      <DependentUpon>Consulta de Empleados Sin Usuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Consulta de Empleados Sin Usuario.aspx.designer.cs">
+      <DependentUpon>Consulta de Empleados Sin Usuario.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ConsultaEmpleado.aspx.cs">
       <DependentUpon>ConsultaEmpleado.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -97,12 +105,12 @@
     <Compile Include="Pages\Empleado.Master.Master.designer.cs">
       <DependentUpon>Empleado.Master.Master</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Gestion de Empleados.aspx.cs">
-      <DependentUpon>Gestion de Empleados.aspx</DependentUpon>
+    <Compile Include="Pages\Consulta de Empleados.aspx.cs">
+      <DependentUpon>Consulta de Empleados.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\Gestion de Empleados.aspx.designer.cs">
-      <DependentUpon>Gestion de Empleados.aspx</DependentUpon>
+    <Compile Include="Pages\Consulta de Empleados.aspx.designer.cs">
+      <DependentUpon>Consulta de Empleados.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Bienvenido.aspx.cs">
       <DependentUpon>Bienvenido.aspx</DependentUpon>
@@ -146,12 +154,12 @@
     <Compile Include="Pages\Registro de Usuarios.aspx.designer.cs">
       <DependentUpon>Registro de Usuarios.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Registro de Empleado.aspx.cs">
-      <DependentUpon>Registro de Empleado.aspx</DependentUpon>
+    <Compile Include="Pages\Registro de Empleados.aspx.cs">
+      <DependentUpon>Registro de Empleados.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\Registro de Empleado.aspx.designer.cs">
-      <DependentUpon>Registro de Empleado.aspx</DependentUpon>
+    <Compile Include="Pages\Registro de Empleados.aspx.designer.cs">
+      <DependentUpon>Registro de Empleados.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

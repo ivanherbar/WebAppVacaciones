@@ -14,7 +14,7 @@
      <section class="hero custom-hero">
         <div class="hero-body">
             <div class="container">
-                <h1 class="title">Registro de Usuario</h1>
+                <h1 class="title">Registro de Usuarios</h1>
                 <br />
                 <h2 class="subtitle">Completa el formulario para registrar un nuevo usuario.</h2>
             </div>

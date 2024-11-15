@@ -1,7 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/MP.Master" AutoEventWireup="true" CodeBehind="Gestion de Empleados.aspx.cs" Inherits="WebAppVacaciones.ModUs" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/MP.Master" AutoEventWireup="true" CodeBehind="Consulta de Empleados.aspx.cs" Inherits="WebAppVacaciones.ModUs" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="server">
-    Gestion de Empleados
+    Consulta de Empleados
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
@@ -45,7 +45,7 @@
     <section class="hero custom-hero">
         <div class="hero-body">
             <div class="container">
-                <h1 class="title">Gestion de Empleados</h1>
+                <h1 class="title">Consulta de Empleados</h1>
                 <br />
                 <h2 class="subtitle">Aquí puedes consultar, modificar o eliminar empleados.</h2>
             </div>

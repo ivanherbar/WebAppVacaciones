@@ -37,8 +37,8 @@
                     <div class="navbar-item has-dropdown is-hoverable">
                         <a class="navbar-link">Gestión de Usuarios</a>
                         <div class="navbar-dropdown">
-                            <a class="navbar-item" href="Registro de Usuarios.aspx">Registar Usuario</a>
-                            <a class="navbar-item" href="Consulta de Usuarios.aspx">Consultar Usuario</a>
+                            <a class="navbar-item" href="Registro de Usuarios.aspx">Registro de Usuarios</a>
+                            <a class="navbar-item" href="Consulta de Usuarios.aspx">Consulta de Usuarios</a>
                         </div>
                     </div>
 
@@ -46,8 +46,9 @@
                     <div class="navbar-item has-dropdown is-hoverable">
                         <a class="navbar-link">Gestión de Empleados</a>
                         <div class="navbar-dropdown">
-                            <a class="navbar-item" href="Registro de Empleado.aspx">Registar Empleado</a>
-                            <a class="navbar-item" href="Gestion de Empleados.aspx">Consultar Empleado</a>
+                            <a class="navbar-item" href="Registro de Empleados.aspx">Registro de Empleados</a>
+                            <a class="navbar-item" href="Consulta de Empleados.aspx">Consulta de Empleados</a>
+                            <a class="navbar-item" href="Consulta de Empleados Sin Usuario.aspx">Consulta de Empleados Sin Usuario</a>
                         </div>
                     </div>
 
