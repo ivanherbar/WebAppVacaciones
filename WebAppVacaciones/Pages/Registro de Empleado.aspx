@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/MP.Master" AutoEventWireup="true" CodeBehind="Registro de Empleado.aspx.cs" Inherits="WebAppVacaciones.Registro_de_Empleado" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="server">
+    Registro de Empleado
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
     <style>

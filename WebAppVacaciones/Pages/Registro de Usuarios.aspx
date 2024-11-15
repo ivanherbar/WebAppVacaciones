@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/MP.Master" AutoEventWireup="true" CodeBehind="Registro de Usuarios.aspx.cs" Inherits="WebAppVacaciones.Pages.Registro_de_Usuarios" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="server">
-        Registro de Usuario
+        Registro de Usuarios
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
      <!-- Añadir CSS personalizado aquí -->

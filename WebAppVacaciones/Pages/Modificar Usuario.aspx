@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/MP.Master" AutoEventWireup="true" CodeBehind="Modificar Usuario.aspx.cs" Inherits="WebAppVacaciones.Pages.Modificar_Usuario" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="server">
+    Modificar Usuarios
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
      <!-- Añadir CSS personalizado aquí -->
@@ -39,30 +40,7 @@
          <div class="field">
              <label class="label">Contraseña</label>
              <div class="control">
-                 <asp:TextBox CssClass="input" ID="txtClave" runat="server" TextMode="Password" Placeholder="Contraseña" Required="true"></asp:TextBox>
-             </div>
-         </div>
-
-         <div class="field">
-             <label class="label">Rol</label>
-             <div class="control">
-                 <div class="select">
-                     <asp:DropDownList ID="ddlRol" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlRol_SelectedIndexChanged">
-                         <asp:ListItem Value="1">Administrador</asp:ListItem>
-                         <asp:ListItem Value="2">Empleado</asp:ListItem>
-                     </asp:DropDownList>
-                 </div>
-             </div>
-         </div>
-
-         <div class="field" id="empleadoField">
-             <label class="label">ID de Empleado (si aplica)</label>
-             <div class="control">
-                 <div class="select">
-                     <asp:DropDownList CssClass="input" ID="ddlIDEmpleado" runat="server"
-                         Enabled="false" AutoPostBack="true" OnSelectedIndexChanged="ddlIDEmpleado_SelectedIndexChanged">
-                     </asp:DropDownList>
-                 </div>
+                 <asp:TextBox CssClass="input" ID="txtClave" runat="server"  Placeholder="Contraseña" Required="true"></asp:TextBox>
              </div>
          </div>
 
