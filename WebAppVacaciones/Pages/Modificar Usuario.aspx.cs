@@ -41,14 +41,12 @@ namespace WebAppVacaciones.Pages
                     {
                         txtNombre.Text = reader["Nombre"].ToString();
                         txtUsuario.Text = reader["Usuario"].ToString();
-                        txtClave.Text = reader["Clave"].ToString()+55;
+                        txtClave.Text = reader["Clave"].ToString();
                     }
                 }
             }
 
         }
-
-
 
         protected void btnModificar_Click(object sender, EventArgs e)
         {
@@ -57,20 +55,59 @@ namespace WebAppVacaciones.Pages
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                using (SqlCommand cmd = new SqlCommand("UPDATE Usuarios SET Nombre = @Nombre, Usuario = @Usuario, Clave = @Clave, Id_Rol = @Id_Rol, ID_Empleado = @ID_Empleado WHERE Id_Usuario = @Id_Usuario", conn))
+                using (SqlCommand cmd = new SqlCommand("sp_editarUsuario", conn))
                 {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    // Agrega los parámetros necesarios para el procedimiento almacenado
+                    cmd.Parameters.AddWithValue("@Id_Usuario", Request.QueryString["Id_Usuario"]);
                     cmd.Parameters.AddWithValue("@Nombre", txtNombre.Text);
                     cmd.Parameters.AddWithValue("@Usuario", txtUsuario.Text);
                     cmd.Parameters.AddWithValue("@Clave", txtClave.Text);
-                    cmd.Parameters.AddWithValue("@Id_Usuario", Request.QueryString["Id_Usuario"]);
+                    cmd.Parameters.AddWithValue("@Patron", "VacacionesGNTTel");
 
+                    // Parámetro de salida para capturar el resultado
+                    SqlParameter resultadoParam = new SqlParameter("@Resultado", SqlDbType.Int)
+                    {
+                        Direction = ParameterDirection.Output
+                    };
+                    cmd.Parameters.Add(resultadoParam);
+
+                    // Ejecuta el procedimiento almacenado
                     cmd.ExecuteNonQuery();
+
+                    // Obtén el valor del parámetro de salida
+                    int resultado = (int)cmd.Parameters["@Resultado"].Value;
+
+                    // Maneja los diferentes resultados
+                    switch (resultado)
+                    {
+                        case 0:
+                            // Éxito: mostrar alerta y redirigir
+                            ScriptManager.RegisterStartupScript(this, GetType(), "alert",
+                                "alert('Usuario actualizado correctamente.'); window.location.href='Bienvenido.aspx';", true);
+                            break;
+                        case 1:
+                            lblMensaje.Text = "El usuario no existe.";
+                            break;
+                        case 2:
+                            lblMensaje.Text = "El nombre de usuario ya está en uso.";
+                            break;
+                        case 3:
+                            lblMensaje.Text = "Un administrador no puede tener un ID de empleado.";
+                            break;
+                        case 4:
+                            lblMensaje.Text = "Un empleado debe tener un ID de empleado.";
+                            break;
+                        default:
+                            lblMensaje.Text = "Ocurrió un error desconocido.";
+                            break;
+                    }
                 }
             }
-
-            lblMensaje.Text = "Usuario modificado exitosamente.";
-            lblMensaje.CssClass = "has-text-success";
         }
+
+
 
     }
 }
