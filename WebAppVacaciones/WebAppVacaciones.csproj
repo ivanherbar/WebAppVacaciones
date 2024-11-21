@@ -98,12 +98,12 @@
     <Compile Include="Pages\ConsultaEmpleado.aspx.designer.cs">
       <DependentUpon>ConsultaEmpleado.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Empleado.Master.Master.cs">
-      <DependentUpon>Empleado.Master.Master</DependentUpon>
+    <Compile Include="Pages\Empleado.Master.cs">
+      <DependentUpon>Empleado.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\Empleado.Master.Master.designer.cs">
-      <DependentUpon>Empleado.Master.Master</DependentUpon>
+    <Compile Include="Pages\Empleado.Master.designer.cs">
+      <DependentUpon>Empleado.Master</DependentUpon>
     </Compile>
     <Compile Include="Pages\Consulta de Empleados.aspx.cs">
       <DependentUpon>Consulta de Empleados.aspx</DependentUpon>
@@ -165,7 +165,7 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Pages\MP.Master" />
-    <Content Include="Pages\Empleado.Master.Master" />
+    <Content Include="Pages\Empleado.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
