@@ -60,7 +60,7 @@
                     </div>
                 </div>
 
-                <asp:GridView ID="gridDetallesEmpleado" runat="server" CssClass="table is-striped is-bordered is-hoverable" AutoGenerateColumns="false" OnRowCommand="gridDetallesEmpleado_RowCommand">
+                <asp:GridView ID="gridDetallesEmpleado" runat="server" CssClass="table is-striped is-bordered is-hoverable" AutoGenerateColumns="false">
                     <Columns>
                         <asp:BoundField DataField="ID_Empleado" HeaderText="ID" />
                         <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
@@ -79,50 +79,5 @@
         </div>
     </section>
 
-    <!-- Modal para mostrar las vacaciones -->
-    <div class="modal" id="modalVacaciones">
-        <div class="modal-background"></div>
-        <div class="modal-card">
-            <header class="modal-card-head">
-                <p class="modal-card-title">Días de Vacaciones</p>
-
-            </header>
-            <section class="modal-card-body">
-                <asp:GridView ID="gridVacaciones" runat="server" CssClass="table is-striped is-bordered" AutoGenerateColumns="false" OnRowCommand="gridVacaciones_RowCommand">
-                    <Columns>
-                        <asp:BoundField DataField="ID_Empleado" HeaderText="ID Empleado" />
-                        <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
-                        <asp:BoundField DataField="Fecha" HeaderText="Fecha" />
-                        <asp:BoundField DataField="TipoDia" HeaderText="TipoDia" />
-                        <asp:TemplateField HeaderText="Acciones">
-                            <ItemTemplate>
-                                <asp:Button
-                                    ID="btnAnular"
-                                    runat="server"
-                                    Text="Anular"
-                                    CommandName="Anular"
-                                    CommandArgument='<%# Eval("ID_Empleado") + "," + Eval("Fecha", "{0:yyyy-MM-dd}") + "," + Eval("MedioDia") %>'
-                                    CssClass="button is-danger boton-estandar" />
-                            </ItemTemplate>
-                        </asp:TemplateField>
-
-                    </Columns>
-                </asp:GridView>
-
-            </section>
-            <footer class="modal-card-foot">
-                <button class="button" onclick="cerrarModal()">Cerrar</button>
-            </footer>
-        </div>
-    </div>
-
-    <script>
-        function abrirModal() {
-            document.getElementById('modalVacaciones').classList.add('is-active');
-        }
-
-        function cerrarModal() {
-            document.getElementById('modalVacacione    s').classList.remove('is-active');
-        }
-    </script>
+   
 </asp:Content>
