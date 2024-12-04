@@ -64,13 +64,6 @@
 
                 <asp:GridView ID="gridDetallesEmpleado" runat="server" CssClass="table is-striped is-bordered is-hoverable" AutoGenerateColumns="false" OnRowCommand="gridDetallesEmpleado_RowCommand">
                     <Columns>
-                        <asp:TemplateField HeaderText="Acciones">
-                            <ItemTemplate>
-                                <asp:Button ID="btnVacaciones" runat="server" Text="Vacaciones" CommandName="Consultar" CommandArgument='<%# Eval("ID_Empleado") %>' CssClass="button is-info boton-estandar" />
-                                <asp:Button ID="btnActualizar" runat="server" Text="Actualizar" CommandName="Actualizar" CommandArgument='<%# Eval("ID_Empleado") %>' CssClass="button is-warning boton-estandar" />
-                                <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CommandName="Eliminar" CommandArgument='<%# Eval("ID_Empleado") %>' CssClass="button is-danger boton-estandar" />
-                            </ItemTemplate>
-                        </asp:TemplateField>
                         <asp:BoundField DataField="ID_Empleado" HeaderText="ID" />
                         <asp:BoundField DataField="Usuario" HeaderText="Usuario" />
                         <asp:BoundField DataField="Nombre_Rol" HeaderText="Rol" />
@@ -86,6 +79,13 @@
                         <asp:BoundField DataField="Dias_por_Año" HeaderText="Días por Año" />
                         <asp:BoundField DataField="Dias_Disponibles" HeaderText="Días Disponibles" />
                         <asp:BoundField DataField="Dias_Disfrutados" HeaderText="Días Disfrutados" />
+                        <asp:TemplateField HeaderText="Acciones">
+                            <ItemTemplate>
+                                <asp:Button ID="btnVacaciones" runat="server" Text="Vacaciones" CommandName="Consultar" CommandArgument='<%# Eval("ID_Empleado") %>' CssClass="button is-info boton-estandar" />
+                                <asp:Button ID="btnActualizar" runat="server" Text="Actualizar" CommandName="Actualizar" CommandArgument='<%# Eval("ID_Empleado") %>' CssClass="button is-warning boton-estandar" />
+                                <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CommandName="Eliminar" CommandArgument='<%# Eval("ID_Empleado") %>' CssClass="button is-danger boton-estandar" />
+                            </ItemTemplate>
+                        </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
             </div>
@@ -135,7 +135,7 @@
         }
 
         function cerrarModal() {
-            document.getElementById('modalVacaciones').classList.remove('is-active');
+            document.getElementById('modalVacacione    s').classList.remove('is-active');
         }
     </script>
 
