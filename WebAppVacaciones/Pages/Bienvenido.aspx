@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/MP.Master" AutoEventWireup="true" CodeBehind="Bienvenido.aspx.cs" Inherits="WebAppVacaciones.Pages.Bienvenido" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="server">
-    Bienvenido
+    ¡Bienvenido!
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
