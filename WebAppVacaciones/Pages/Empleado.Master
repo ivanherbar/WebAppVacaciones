@@ -34,6 +34,9 @@
 
                     <!-- Información del usuario en la esquina derecha -->
                     <div class="navbar-end">
+                        <a class="navbar-link" href="Login.aspx" >Ver Información</a>
+                    </div>
+                    <div class="navbar-end">
                         <div class="navbar-item has-dropdown is-hoverable">
                             <a class="navbar-link">Más</a>
                             <div class="navbar-dropdown is-right">
