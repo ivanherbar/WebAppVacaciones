@@ -57,8 +57,6 @@
                         <div class="navbar-item has-dropdown is-hoverable">
                             <a class="navbar-link">Más</a>
                             <div class="navbar-dropdown is-right">
-                                <a class="navbar-item" href="#">Configuración de Perfil</a>
-                                <hr class="navbar-divider">
                                 <a class="navbar-item" href="#" runat="server" onserverclick="Logout_Click">Cerrar Sesión</a>
                             </div>
                         </div>
