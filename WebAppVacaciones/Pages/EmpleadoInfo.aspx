@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/Empleado.Master" AutoEventWireup="true" CodeBehind="EmpleadoInfo.aspx.cs" Inherits="WebAppVacaciones.ModUs" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="server">
-    Consulta de Empleados
+    Consulta de Información
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
@@ -45,9 +45,7 @@
     <section class="hero custom-hero">
         <div class="hero-body">
             <div class="container">
-                <h1 class="title">Consulta de Empleados</h1>
-                <br />
-                <h2 class="subtitle">Aquí puedes consultar, modificar o eliminar empleados.</h2>
+                <h1 class="title">Tú información</h1>
             </div>
         </div>
     </section>
@@ -55,12 +53,7 @@
     <section class="section">
         <div class="centered-container">
             <div class="container container-custom">
-                <div class="field">
-                    <label class="label">Nombre del Empleado</label>
-                    <div class="control">
-                        <asp:TextBox ID="txtSearch" runat="server" CssClass="input" Placeholder="Buscar..." AutoPostBack="true" OnTextChanged="txtSearch_TextChanged"></asp:TextBox>
-                    </div>
-                </div>
+                
 
                 <asp:GridView ID="gridDetallesEmpleado" runat="server" CssClass="table is-striped is-bordered is-hoverable" AutoGenerateColumns="false" OnRowCommand="gridDetallesEmpleado_RowCommand">
                     <Columns>
@@ -79,10 +72,10 @@
                         <asp:BoundField DataField="Dias_por_Año" HeaderText="Días por Año" />
                         <asp:BoundField DataField="Dias_Disponibles" HeaderText="Días Disponibles" />
                         <asp:BoundField DataField="Dias_Disfrutados" HeaderText="Días Disfrutados" />
-                        <asp:TemplateField HeaderText="Acciones">
+                        <asp:TemplateField HeaderText="Vacaciones">
                             <ItemTemplate>
-                                <asp:Button ID="btnVacaciones" runat="server" Text="Vacaciones" CommandName="Consultar" CommandArgument='<%# Eval("ID_Empleado") %>' CssClass="button is-info boton-estandar" />
-                                <asp:Button ID="btnActualizar" runat="server" Text="Actualizar" CommandName="Actualizar" CommandArgument='<%# Eval("ID_Empleado") %>' CssClass="button is-warning boton-estandar" />
+                                <asp:Button ID="btnVacaciones" runat="server" Text="Consultar" CommandName="Consultar" CommandArgument='<%# Eval("ID_Empleado") %>' CssClass="button is-info boton-estandar" />
+                                <asp:Button ID="btnActualizar" runat="server" Text="Solicitar" CommandName="Actualizar" CommandArgument='<%# Eval("ID_Empleado") %>' CssClass="button is-warning boton-estandar" />
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
