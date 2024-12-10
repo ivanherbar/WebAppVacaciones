@@ -8,9 +8,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace WebAppVacaciones
+namespace WebAppVacaciones.Pages
 {
-    public partial class ModUs : System.Web.UI.Page
+    public partial class EmpleadoInfo : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

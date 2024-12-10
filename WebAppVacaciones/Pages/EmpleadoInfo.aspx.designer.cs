@@ -7,11 +7,11 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace WebAppVacaciones
+namespace WebAppVacaciones.Pages
 {
 
 
-    public partial class ModUs
+    public partial class EmpleadoInfo
     {
 
         /// <summary>

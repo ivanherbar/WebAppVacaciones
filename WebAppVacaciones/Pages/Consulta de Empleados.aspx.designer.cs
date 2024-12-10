@@ -7,7 +7,7 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace WebAppVacaciones
+namespace WebAppVacaciones.Pages
 {
 
 

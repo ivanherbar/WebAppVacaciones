@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace WebAppVacaciones
+namespace WebAppVacaciones.Pages
 {
     public partial class Consulta_de_Empleados : System.Web.UI.Page
     {

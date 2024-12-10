@@ -44,7 +44,7 @@ namespace WebAppVacaciones
                     }
                     else if (Session["Id_rol"].ToString() == "2")
                     {
-                        Response.Redirect("ConsultaEmpleado.aspx");
+                        Response.Redirect("Bienvenida Empleado.aspx");
                     }
                     else
                     {

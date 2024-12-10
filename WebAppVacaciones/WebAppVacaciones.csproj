@@ -72,8 +72,8 @@
   <ItemGroup>
     <Content Include="Img\gnt logo.png" />
     <Content Include="Img\Logo.png" />
+    <Content Include="Pages\Bienvenida Empleado.aspx" />
     <Content Include="Pages\Consulta de Empleados Sin Usuario.aspx" />
-    <Content Include="Pages\ConsultaEmpleado.aspx" />
     <Content Include="Pages\Consulta de Empleados.aspx" />
     <Content Include="Pages\Bienvenido.aspx" />
     <Content Include="Pages\Consulta de Usuarios.aspx" />
@@ -85,19 +85,19 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pages\Bienvenida Empleado.aspx.cs">
+      <DependentUpon>Bienvenida Empleado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Bienvenida Empleado.aspx.designer.cs">
+      <DependentUpon>Bienvenida Empleado.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Consulta de Empleados Sin Usuario.aspx.cs">
       <DependentUpon>Consulta de Empleados Sin Usuario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Consulta de Empleados Sin Usuario.aspx.designer.cs">
       <DependentUpon>Consulta de Empleados Sin Usuario.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\ConsultaEmpleado.aspx.cs">
-      <DependentUpon>ConsultaEmpleado.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\ConsultaEmpleado.aspx.designer.cs">
-      <DependentUpon>ConsultaEmpleado.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Empleado.Master.cs">
       <DependentUpon>Empleado.Master</DependentUpon>
