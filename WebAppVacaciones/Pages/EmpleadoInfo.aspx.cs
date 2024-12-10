@@ -42,11 +42,7 @@ namespace WebAppVacaciones
             }
         }
 
-        protected void txtSearch_TextChanged(object sender, EventArgs e)
-        {
-            string filtro = txtSearch.Text.Trim();
-            CargarDatos(filtro);
-        }
+
 
         protected void gridDetallesEmpleado_RowCommand(object sender, GridViewCommandEventArgs e)
         {
