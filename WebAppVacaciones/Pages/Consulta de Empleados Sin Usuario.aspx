@@ -113,10 +113,12 @@
                     </div>
                 </div>
             </section>
-            <footer class="modal-card-foot">
+
+             <footer class="modal-card-foot">
                 <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="button is-success"  />
-                <button class="button">Cancelar</button>
+                <button class="button" onclick="cerrarModal()">Cerrar</button>
             </footer>
+
         </div>
     </div>
 

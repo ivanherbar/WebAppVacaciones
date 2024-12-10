@@ -77,7 +77,6 @@
     <Content Include="Pages\Consulta de Empleados.aspx" />
     <Content Include="Pages\Bienvenido.aspx" />
     <Content Include="Pages\Consulta de Usuarios.aspx" />
-    <Content Include="Pages\EditarPerfil.aspx" />
     <Content Include="Pages\EmpleadoInfo.aspx" />
     <Content Include="Pages\Login.aspx" />
     <Content Include="Pages\Modificar Usuario.aspx" />
@@ -127,13 +126,6 @@
     </Compile>
     <Compile Include="Pages\Consulta de Usuarios.aspx.designer.cs">
       <DependentUpon>Consulta de Usuarios.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\EditarPerfil.aspx.cs">
-      <DependentUpon>EditarPerfil.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\EditarPerfil.aspx.designer.cs">
-      <DependentUpon>EditarPerfil.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\EmpleadoInfo.aspx.cs">
       <DependentUpon>EmpleadoInfo.aspx</DependentUpon>
