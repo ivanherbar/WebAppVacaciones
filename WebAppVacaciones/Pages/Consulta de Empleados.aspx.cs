@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace WebAppVacaciones
 {
-    public partial class ModUs : System.Web.UI.Page
+    public partial class Consulta_de_Empleados : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

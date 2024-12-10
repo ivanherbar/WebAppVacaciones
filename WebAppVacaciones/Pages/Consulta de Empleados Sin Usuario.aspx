@@ -60,7 +60,7 @@
                     </div>
                 </div>
 
-                <asp:GridView ID="gridDetallesEmpleado" runat="server" CssClass="table is-striped is-bordered is-hoverable" AutoGenerateColumns="false">
+                <asp:GridView ID="gridDetallesEmpleado" runat="server" CssClass="table is-striped is-bordered is-hoverable" AutoGenerateColumns="false" OnRowCommand="gridDetallesEmpleado_RowCommand">
                     <Columns>
                         <asp:BoundField DataField="ID_Empleado" HeaderText="ID" />
                         <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
@@ -79,5 +79,53 @@
         </div>
     </section>
 
-   
+    <!-- Modal para Actualizar Empleado -->
+    <div class="modal" id="modalActualizar">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Actualizar Empleado</p>
+                <button class="delete" aria-label="close" onclick="cerrarModal()"></button>
+            </header>
+            <section class="modal-card-body">
+                <div class="field">
+                    <label class="label">Nombre Completo</label>
+                    <div class="control">
+                        <asp:TextBox ID="txtNombre" runat="server" CssClass="input" />
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Puesto</label>
+                    <div class="control">
+                        <asp:TextBox ID="txtPuesto" runat="server" CssClass="input" />
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Fecha de Ingreso</label>
+                    <div class="control">
+                        <asp:TextBox ID="txtFechaIngreso" runat="server" CssClass="input" />
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">PDV</label>
+                    <div class="control">
+                        <asp:TextBox ID="txtPDV" runat="server" CssClass="input" />
+                    </div>
+                </div>
+            </section>
+            <footer class="modal-card-foot">
+                <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="button is-success"  />
+                <button class="button">Cancelar</button>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        function abrirModal() {
+            document.getElementById('modalActualizar').classList.add('is-active');
+        }
+        function cerrarModal() {
+            document.getElementById('modalActualizar').classList.remove('is-active');
+        }
+    </script>
 </asp:Content>

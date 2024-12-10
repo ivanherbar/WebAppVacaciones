@@ -11,7 +11,7 @@ namespace WebAppVacaciones
 {
 
 
-    public partial class ModUs
+    public partial class Consulta_de_Empleados
     {
 
         /// <summary>
