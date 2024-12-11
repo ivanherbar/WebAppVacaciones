@@ -14,33 +14,38 @@ namespace WebAppVacaciones.Pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            int EmpleadoLogeado = int.Parse(Session["ID_Empleado"].ToString());
+
             if (!IsPostBack)
             {
-                CargarDatos();
+                CargarDatos(EmpleadoLogeado);
             }
         }
 
-        private void CargarDatos(string filtro = "")
+        private void CargarDatos(int EmpleadoLogeado)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
 
             using (SqlConnection con = new SqlConnection(connectionString))
             {
-                using (SqlCommand command = new SqlCommand("sp_datos", con))
+                using (SqlCommand command = new SqlCommand("sp_datos_UsuarioLogueado", con))
                 {
                     command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@Filtro", filtro);
+                    // Agregar el parámetro @ID_Empleado al comando
+                    command.Parameters.AddWithValue("@ID_Empleado", EmpleadoLogeado);
 
                     con.Open();
                     SqlDataReader reader = command.ExecuteReader();
                     DataTable dt = new DataTable();
                     dt.Load(reader);
 
+                    // Asignar los datos al control GridView o equivalente
                     gridDetallesEmpleado.DataSource = dt;
                     gridDetallesEmpleado.DataBind();
                 }
             }
         }
+
 
 
 
