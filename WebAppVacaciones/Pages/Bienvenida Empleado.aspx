@@ -38,7 +38,6 @@
 
     <div class="welcome-container">
         <!-- El lblusuario está centrado y con un tamaño más grande -->
-
         <asp:Label Style="font-size: 50px" class="title" runat="server" ID="Label1"></asp:Label>
         <h1 style="font-size: 40px" tyle="color:#FF0000" class="title">¡Bienvenido al Sistema!</h1>
         <p>Encantados de tenerte de vuelta. Haz clic en la barra de navegacion para comenzar.</p>
