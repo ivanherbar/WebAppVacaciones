@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/Empleado.Master" AutoEventWireup="true" CodeBehind="EmpleadoInfo.aspx.cs" Inherits="WebAppVacaciones.Pages.EmpleadoInfo" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="server">
-    Consulta de Información
+    Tu Información
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
@@ -45,7 +45,9 @@
     <section class="hero custom-hero">
         <div class="hero-body">
             <div class="container">
-                <h1 class="title">Tú información</h1>
+                <h1 class="title">Tu Información</h1>
+                <br />
+                <h2 class="subtitle">Aquí puedes consultar, tu información.</h2>
             </div>
         </div>
     </section>
@@ -99,18 +101,6 @@
                         <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
                         <asp:BoundField DataField="Fecha" HeaderText="Fecha" />
                         <asp:BoundField DataField="TipoDia" HeaderText="TipoDia" />
-                        <asp:TemplateField HeaderText="Acciones">
-                            <ItemTemplate>
-                                <asp:Button
-                                    ID="btnAnular"
-                                    runat="server"
-                                    Text="Anular"
-                                    CommandName="Anular"
-                                    CommandArgument='<%# Eval("ID_Empleado") + "," + Eval("Fecha", "{0:yyyy-MM-dd}") + "," + Eval("MedioDia") %>'
-                                    CssClass="button is-danger boton-estandar" />
-                            </ItemTemplate>
-                        </asp:TemplateField>
-
                     </Columns>
                 </asp:GridView>
 
