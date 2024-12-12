@@ -129,14 +129,12 @@
             <p class="modal-card-title">Seleccionar Día de Vacaciones</p>
         </header>
         <section class="modal-card-body">
-            <form id="formSeleccionarDia">
                 <div class="field">
-                    <label class="label">Selecciona una fecha</label>
+                    <label class="label">Fecha Ingreso</label>
                     <div class="control">
-                        <input type="date" id="fechaVacaciones" class="input" min="" required />
+                        <asp:TextBox CssClass="input" ID="TextFechaVacaciones" runat="server" Placeholder="Fecha_Vacaciones" Required="true" TextMode="Date"></asp:TextBox>
                     </div>
                 </div>
-            </form>
         </section>
         <footer class="modal-card-foot">
             <button class="button is-success" onclick="enviarSolicitud()">Solicitar</button>
