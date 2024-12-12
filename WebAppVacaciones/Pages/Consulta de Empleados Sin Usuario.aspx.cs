@@ -80,7 +80,7 @@ namespace WebAppVacaciones.Pages
 
                     int resultadoOperacion = (int)returnValue.Value;
 
-                    
+
                     CargarDatos(); // Recargar la lista de usuarios
                     // Mostrar notificaciones basadas en el código de retorno
                     if (resultadoOperacion == 1)
