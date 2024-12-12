@@ -77,7 +77,7 @@
                         <asp:TemplateField HeaderText="Vacaciones">
                             <ItemTemplate>
                                 <asp:Button ID="btnVacaciones" runat="server" Text="Consultar" CommandName="Consultar" CommandArgument='<%# Eval("ID_Empleado") %>' CssClass="button is-info boton-estandar" />
-                                <asp:Button ID="btnActualizar" runat="server" Text="Solicitar" CommandName="Actualizar" CommandArgument='<%# Eval("ID_Empleado") %>' CssClass="button is-warning boton-estandar" />
+                                <asp:Button ID="btnActualizar" runat="server" Text="Solicitar" CssClass="button is-warning boton-estandar" OnClientClick="abrirModalSeleccionarDia(); return false;" />
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
@@ -120,5 +120,63 @@
             document.getElementById('modalVacacione    s').classList.remove('is-active');
         }
     </script>
+
+<!-- Modal para seleccionar día de vacaciones -->
+<div class="modal" id="modalSeleccionarDia">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">Seleccionar Día de Vacaciones</p>
+        </header>
+        <section class="modal-card-body">
+            <form id="formSeleccionarDia">
+                <div class="field">
+                    <label class="label">Selecciona una fecha</label>
+                    <div class="control">
+                        <input type="date" id="fechaVacaciones" class="input" min="" required />
+                    </div>
+                </div>
+            </form>
+        </section>
+        <footer class="modal-card-foot">
+            <button class="button is-success" onclick="enviarSolicitud()">Solicitar</button>
+            <button class="button" onclick="cerrarModalSeleccionarDia()">Cancelar</button>
+        </footer>
+    </div>
+</div>
+
+<script>
+    // Establecer la fecha mínima como hoy
+    document.addEventListener("DOMContentLoaded", function () {
+        const today = new Date();
+        const minDate = new Date(today.setDate(today.getDate() + 1)).toISOString().split('T')[0]; // Mínimo mañana
+        const maxDate = new Date(today.setFullYear(today.getFullYear() + 1)).toISOString().split('T')[0]; // Máximo un año
+        const inputFecha = document.getElementById('fechaVacaciones');
+        inputFecha.setAttribute('min', minDate);
+        inputFecha.setAttribute('max', maxDate);
+    });
+
+    function abrirModalSeleccionarDia() {
+        document.getElementById('modalSeleccionarDia').classList.add('is-active');
+    }
+
+    function cerrarModalSeleccionarDia() {
+        document.getElementById('modalSeleccionarDia').classList.remove('is-active');
+    }
+
+    function enviarSolicitud() {
+        const fecha = document.getElementById('fechaVacaciones').value;
+        if (!fecha) {
+            Swal.fire('Error', 'Por favor selecciona una fecha.', 'error');
+            return;
+        }
+
+        Swal.fire('Solicitud enviada', `Has solicitado el día ${fecha} como vacaciones.`, 'success');
+        cerrarModalSeleccionarDia();
+    }
+</script>
+
+
+
 
 </asp:Content>
