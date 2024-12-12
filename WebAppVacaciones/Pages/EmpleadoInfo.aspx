@@ -47,7 +47,7 @@
             <div class="container">
                 <h1 class="title">Tu Información</h1>
                 <br />
-                <h2 class="subtitle">Aquí puedes consultar, tu información.</h2>
+                <h2 class="subtitle">Aquí puedes consultar, tu información y solicitar dias de vacaciones.</h2>
             </div>
         </div>
     </section>

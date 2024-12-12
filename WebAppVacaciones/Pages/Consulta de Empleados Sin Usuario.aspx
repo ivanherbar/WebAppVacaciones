@@ -60,21 +60,40 @@
                     </div>
                 </div>
 
-                <asp:GridView ID="gridDetallesEmpleado" runat="server" CssClass="table is-striped is-bordered is-hoverable" AutoGenerateColumns="false" OnRowCommand="gridDetallesEmpleado_RowCommand">
-                    <Columns>
-                        <asp:BoundField DataField="ID_Empleado" HeaderText="ID" />
-                        <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
-                        <asp:BoundField DataField="Puesto" HeaderText="Puesto" />
-                        <asp:BoundField DataField="Fecha_Ingreso" HeaderText="Fecha Ingreso" DataFormatString="{0:yyyy-MM-dd}" />
-                        <asp:BoundField DataField="Nombre_PDV" HeaderText="PDV" />
-                        <asp:TemplateField HeaderText="Acciones">
-                            <ItemTemplate>
-                                <asp:Button ID="btnActualizar" runat="server" Text="Actualizar" CommandName="Actualizar" CommandArgument='<%# Eval("ID_Empleado") %>' CssClass="button is-warning boton-estandar" />
-                                <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CommandName="Eliminar" CommandArgument='<%# Eval("ID_Empleado") %>' CssClass="button is-danger boton-estandar" />
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                    </Columns>
-                </asp:GridView>
+<asp:GridView 
+    ID="gridDetallesEmpleado" 
+    runat="server" 
+    CssClass="table is-striped is-bordered is-hoverable" 
+    AutoGenerateColumns="false" 
+    OnRowCommand="gridDetallesEmpleado_RowCommand" 
+    DataKeyNames="ID_Empleado">
+    <Columns>
+        <asp:BoundField DataField="ID_Empleado" HeaderText="ID" />
+        <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
+        <asp:BoundField DataField="Puesto" HeaderText="Puesto" />
+        <asp:BoundField DataField="Fecha_Ingreso" HeaderText="Fecha Ingreso" DataFormatString="{0:yyyy-MM-dd}" />
+        <asp:BoundField DataField="Nombre_PDV" HeaderText="PDV" />
+        <asp:TemplateField HeaderText="Acciones">
+            <ItemTemplate>
+                <asp:Button 
+                    ID="btnActualizar" 
+                    runat="server" 
+                    Text="Actualizar" 
+                    CommandName="Actualizar" 
+                    CommandArgument='<%# Eval("ID_Empleado") %>' 
+                    CssClass="button is-warning boton-estandar" />
+                <asp:Button 
+                    ID="btnEliminar" 
+                    runat="server" 
+                    Text="Eliminar" 
+                    CommandName="Eliminar" 
+                    CommandArgument='<%# Eval("ID_Empleado") %>' 
+                    CssClass="button is-danger boton-estandar" />
+            </ItemTemplate>
+        </asp:TemplateField>
+    </Columns>
+</asp:GridView>
+
             </div>
         </div>
     </section>

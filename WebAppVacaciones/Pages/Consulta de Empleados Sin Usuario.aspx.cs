@@ -48,60 +48,62 @@ namespace WebAppVacaciones.Pages
         // Manejo del comando para las acciones de actualizar y eliminar
         protected void gridDetallesEmpleado_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if (e.CommandName == "Actualizar")
+            if (e.CommandName == "Eliminar")
             {
-                // Obtener el índice de la fila desde el CommandSource
-                int rowIndex = ((GridViewRow)((Button)e.CommandSource).NamingContainer).RowIndex;
+                // Obtener el ID del empleado desde CommandArgument
+                int idEmpleado = Convert.ToInt32(e.CommandArgument);
 
-                // Obtener la fila desde el GridView
-                GridViewRow row = gridDetallesEmpleado.Rows[rowIndex];
-
-                // Extraer los datos de las celdas
-                string nombre = row.Cells[1].Text;
-                string puesto = row.Cells[2].Text;
-                string fechaIngreso = row.Cells[3].Text;
-                string pdv = row.Cells[4].Text;
-
-                // Llenar los campos del modal con los datos extraídos
-                txtNombre.Text = nombre;
-                txtPuesto.Text = puesto;
-                txtFechaIngreso.Text = fechaIngreso;
-                txtPDV.Text = pdv;
-
-                // Abrir el modal
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "AbrirModal", "abrirModal();", true);
-            }
-            else if (e.CommandName == "Eliminar")
-            {
-                // Obtener el índice de la fila desde el CommandSource
-                int rowIndex = ((GridViewRow)((Button)e.CommandSource).NamingContainer).RowIndex;
-
-                // Obtener el ID del empleado desde el CommandArgument
-                int idEmpleado = Convert.ToInt32(gridDetallesEmpleado.DataKeys[rowIndex].Value);
-
-                // Lógica para eliminar el registro
-                EliminarRegistro(idEmpleado);
+                // Llamar al método para eliminar
+                EliminarUsuario(idEmpleado);
             }
         }
 
-        private void EliminarRegistro(int userId)
+
+        private void EliminarUsuario(int idEmpleado)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
 
-            using (SqlConnection con = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                using (SqlCommand command = new SqlCommand("sp_EliminarEmpleado", con))
+                using (SqlCommand cmd = new SqlCommand("sp_EliminarEmpleado", connection))
                 {
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@ID_Empleado", userId);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@ID_Empleado", idEmpleado);
 
-                    con.Open();
-                    command.ExecuteNonQuery();
-                }
-            }
+                    // Parámetro para capturar el valor de retorno
+                    SqlParameter returnValue = new SqlParameter();
+                    returnValue.Direction = ParameterDirection.ReturnValue;
+                    cmd.Parameters.Add(returnValue);
 
-            // Recargar los datos después de la eliminación
-            CargarDatos();
+                    connection.Open();
+                    cmd.ExecuteNonQuery();
+
+                    int resultadoOperacion = (int)returnValue.Value;
+
+                    
+                    CargarDatos(); // Recargar la lista de usuarios
+                    // Mostrar notificaciones basadas en el código de retorno
+                    if (resultadoOperacion == 1)
+                    {
+                        MostrarNotificacion("El empleado fue eliminado correctamente.", "success");
+                    }
+                    else if (resultadoOperacion == -1)
+                    {
+                        MostrarNotificacion("El empleado no existe.", "warning");
+                    }
+                    else
+                    {
+                        MostrarNotificacion("Ocurrió un error al intentar eliminar el empleado.", "error");
+                    }
+                } // SqlCommand se libera aquí
+            } // SqlConnection se cierra automáticamente aquí
+
+        }
+        // Método para mostrar notificaciones
+        private void MostrarNotificacion(string mensaje, string tipo)
+        {
+            string script = $"Swal.fire({{ text: '{mensaje}', icon: '{tipo}', timer: 3000, showConfirmButton: false }});";
+            ScriptManager.RegisterStartupScript(this, GetType(), "showNotification", script, true);
         }
 
         private void ActualizarRegistro(int userId)
