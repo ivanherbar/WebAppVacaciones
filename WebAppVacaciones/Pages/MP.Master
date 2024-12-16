@@ -34,6 +34,8 @@
                     </a>
 
                     <!-- Menú Consultas -->
+                    <a class="navbar-item" href="AdminVacacionesSolicitud.aspx">Solicitudes de Vacaciones</a>
+
                     <div class="navbar-item has-dropdown is-hoverable">
                         <a class="navbar-link">Gestión de Usuarios</a>
                         <div class="navbar-dropdown">
@@ -51,6 +53,7 @@
                             <a class="navbar-item" href="Consulta de Empleados Sin Usuario.aspx">Consulta de Empleados Sin Usuario</a>
                         </div>
                     </div>
+
 
                     <!-- Información del usuario en la esquina derecha -->
                     <div class="navbar-end">
