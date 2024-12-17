@@ -52,13 +52,13 @@ namespace WebAppVacaciones.Pages
             {
                 case "Consultar":
                     CargarVacaciones(userId);
-                    break;
+                break;
                 case "Actualizar":
                     ActualizarRegistro(userId);
-                    break;
+                break;
                 case "Eliminar":
                     EliminarRegistro(userId);
-                    break;
+                break;
             }
         }
 

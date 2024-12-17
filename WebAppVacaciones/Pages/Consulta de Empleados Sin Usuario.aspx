@@ -60,93 +60,94 @@
                     </div>
                 </div>
 
-<asp:GridView 
-    ID="gridDetallesEmpleado" 
-    runat="server" 
-    CssClass="table is-striped is-bordered is-hoverable" 
-    AutoGenerateColumns="false" 
-    OnRowCommand="gridDetallesEmpleado_RowCommand" 
-    DataKeyNames="ID_Empleado">
-    <Columns>
-        <asp:BoundField DataField="ID_Empleado" HeaderText="ID" />
-        <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
-        <asp:BoundField DataField="Puesto" HeaderText="Puesto" />
-        <asp:BoundField DataField="Fecha_Ingreso" HeaderText="Fecha Ingreso" DataFormatString="{0:yyyy-MM-dd}" />
-        <asp:BoundField DataField="Nombre_PDV" HeaderText="PDV" />
-        <asp:TemplateField HeaderText="Acciones">
-            <ItemTemplate>
-                <asp:Button 
-                    ID="btnActualizar" 
-                    runat="server" 
-                    Text="Actualizar" 
-                    CommandName="Actualizar" 
-                    CommandArgument='<%# Eval("ID_Empleado") %>' 
-                    CssClass="button is-warning boton-estandar" />
-                <asp:Button 
-                    ID="btnEliminar" 
-                    runat="server" 
-                    Text="Eliminar" 
-                    CommandName="Eliminar" 
-                    CommandArgument='<%# Eval("ID_Empleado") %>' 
-                    CssClass="button is-danger boton-estandar" />
-            </ItemTemplate>
-        </asp:TemplateField>
-    </Columns>
-</asp:GridView>
-
+                <asp:GridView
+                    ID="gridDetallesEmpleado"
+                    runat="server"
+                    CssClass="table is-striped is-bordered is-hoverable"
+                    AutoGenerateColumns="false"
+                    OnRowCommand="gridDetallesEmpleado_RowCommand"
+                    DataKeyNames="ID_Empleado">
+                    <Columns>
+                        <asp:BoundField DataField="ID_Empleado" HeaderText="ID" />
+                        <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
+                        <asp:BoundField DataField="Puesto" HeaderText="Puesto" />
+                        <asp:BoundField DataField="Fecha_Ingreso" HeaderText="Fecha Ingreso" DataFormatString="{0:yyyy-MM-dd}" />
+                        <asp:BoundField DataField="Nombre_PDV" HeaderText="PDV" />
+                        <asp:TemplateField HeaderText="Acciones">
+                            <ItemTemplate>
+                                <!-- Botón para abrir el modal -->
+                                <asp:Button
+                                    ID="btnActualizar"
+                                    runat="server"
+                                    Text="Actualizar"
+                                    CommandName="Actualizar"
+                                    CommandArgument='<%# Eval("ID_Empleado") %>'
+                                    CssClass="button is-warning boton-estandar" />
+                                <asp:Button
+                                    ID="btnEliminar"
+                                    runat="server"
+                                    Text="Eliminar"
+                                    CommandName="Eliminar"
+                                    CommandArgument='<%# Eval("ID_Empleado") %>'
+                                    CssClass="button is-danger boton-estandar" />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+                </asp:GridView>
             </div>
         </div>
     </section>
 
-    <!-- Modal para Actualizar Empleado -->
-    <div class="modal" id="modalActualizar">
+    <!-- Modal para mostrar las vacaciones -->
+    <div class="modal" id="modalModificarEmpleadoSinUsuario">
         <div class="modal-background"></div>
         <div class="modal-card">
             <header class="modal-card-head">
-                <p class="modal-card-title">Actualizar Empleado</p>
-                <button class="delete" aria-label="close" onclick="cerrarModal()"></button>
+                <p class="modal-card-title">Modificar Empleado Sin Usuario</p>
             </header>
             <section class="modal-card-body">
                 <div class="field">
-                    <label class="label">Nombre Completo</label>
+                    <label class="label">Nombre</label>
                     <div class="control">
-                        <asp:TextBox ID="txtNombre" runat="server" CssClass="input" />
+                        <asp:TextBox ID="txtNombre" runat="server" CssClass="input" Placeholder="Nombre del empleado"></asp:TextBox>
                     </div>
                 </div>
+
                 <div class="field">
                     <label class="label">Puesto</label>
                     <div class="control">
-                        <asp:TextBox ID="txtPuesto" runat="server" CssClass="input" />
+                        <asp:TextBox ID="txtPuesto" runat="server" CssClass="input" Placeholder="Puesto del empleado"></asp:TextBox>
                     </div>
                 </div>
+
                 <div class="field">
                     <label class="label">Fecha de Ingreso</label>
                     <div class="control">
-                        <asp:TextBox ID="txtFechaIngreso" runat="server" CssClass="input" />
+                        <asp:TextBox ID="txtFechaIngreso" runat="server" CssClass="input" Placeholder="AAAA-MM-DD"></asp:TextBox>
                     </div>
                 </div>
+
                 <div class="field">
                     <label class="label">PDV</label>
                     <div class="control">
-                        <asp:TextBox ID="txtPDV" runat="server" CssClass="input" />
+                        <asp:DropDownList ID="ddlPDV" runat="server" CssClass="input"></asp:DropDownList>
                     </div>
                 </div>
             </section>
-
-             <footer class="modal-card-foot">
-                <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="button is-success"  />
+            <footer class="modal-card-foot">
+                <button class="button is-primary">Guardar</button>
                 <button class="button" onclick="cerrarModal()">Cerrar</button>
             </footer>
-
         </div>
     </div>
 
     <script>
         function abrirModal() {
-            document.getElementById('modalActualizar').classList.add('is-active');
+            document.getElementById('modalModificarEmpleadoSinUsuario').classList.add('is-active');
         }
+
         function cerrarModal() {
-            document.getElementById('modalActualizar').classList.remove('is-active');
+            document.getElementById('modalModificarEmpleadoSinUsuario').classList.remove('is-active');
         }
     </script>
-</asp:Content>                                                  
+</asp:Content>

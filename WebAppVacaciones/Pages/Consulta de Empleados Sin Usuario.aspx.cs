@@ -50,10 +50,72 @@ namespace WebAppVacaciones.Pages
         {
             if (e.CommandName == "Eliminar")
             {
+                // Obtener el ID del empleado desde CommandArgument
                 int idEmpleado = Convert.ToInt32(e.CommandArgument);
 
+                // Llamar al método para eliminar
+                EliminarUsuario(idEmpleado);
             }
+            if (e.CommandName == "Actualizar")
+            {
+
+                CargarPDV();
+
+                // Abrir el modal para mostrar los registros de vacaciones
+                ScriptManager.RegisterStartupScript(this, GetType(), "abrirModal", "abrirModal();", true);
+            }
+
         }
+
+
+        // Método para cargar el DropDownList de PDV (Punto de Venta) desde la base de datos
+        private void CargarPDV()
+        {
+            // Obtener la cadena de conexión desde el archivo Web.config
+            string connectionString = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
+
+            // Se utiliza una conexión a la base de datos SQL Server
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                // Usar un procedimiento almacenado llamado "sp_consultar_pdv"
+                SqlCommand cmd = new SqlCommand("sp_consultar_pdv", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                try
+                {
+                    // Abre la conexión a la base de datos
+                    con.Open();
+                    // Ejecuta el procedimiento y obtiene los resultados
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    // Establece los datos del DropDownList
+                    ddlPDV.DataSource = reader;
+                    ddlPDV.DataTextField = "Nombre_PDV";  // El nombre que se mostrará en el DropDownList
+                    ddlPDV.DataValueField = "ID_PDV";     // El valor que se almacenará internamente
+                    ddlPDV.DataBind();
+                }
+                catch (Exception ex)
+                {
+                    // En caso de error, muestra un mensaje
+                    MostrarMensaje("Error al cargar PDV: " + ex.Message, true);
+                }
+            }
+
+            // Añade un elemento predeterminado al inicio del DropDownList
+            ddlPDV.Items.Insert(0, new ListItem("Seleccione un PDV", "0"));
+        }
+
+        private void MostrarMensaje(string mensaje, bool esError)
+        {
+            // Determina el tipo de alerta según si es error o éxito
+            string tipoAlerta = esError ? "error" : "success";
+            // Mostrar una alerta en pantalla con el mensaje
+            string script = $"alert('{mensaje}');"; // Aquí podrías usar toastr, alert, u otra librería de notificaciones
+
+            // Registrar el script para ejecutarlo en la página web
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alertMessage", script, true);
+        }
+
 
         private void EliminarUsuario(int idEmpleado)
         {
@@ -102,9 +164,6 @@ namespace WebAppVacaciones.Pages
             ScriptManager.RegisterStartupScript(this, GetType(), "showNotification", script, true);
         }
 
-        private void ActualizarRegistro(int userId)
-        {
-            // Lógica para actualizar el registro
-        }
+
     }
 }
