@@ -50,14 +50,10 @@ namespace WebAppVacaciones.Pages
         {
             if (e.CommandName == "Eliminar")
             {
-                // Obtener el ID del empleado desde CommandArgument
                 int idEmpleado = Convert.ToInt32(e.CommandArgument);
 
-                // Llamar al método para eliminar
-                EliminarUsuario(idEmpleado);
             }
         }
-
 
         private void EliminarUsuario(int idEmpleado)
         {
