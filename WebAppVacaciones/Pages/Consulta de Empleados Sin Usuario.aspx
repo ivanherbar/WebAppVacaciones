@@ -137,7 +137,14 @@
                 </div>
             </section>
             <footer class="modal-card-foot">
-                <button class="button is-primary">Guardar</button>
+                <asp:Button
+                    ID="btnGuardar"
+                    runat="server"
+                    CssClass="button is-primary"
+                    Text="Guardar"
+                    OnClick="btnGuardar_Click" />
+                <asp:HiddenField ID="hfEmpleadoID" runat="server" />
+
                 <button class="button" onclick="cerrarModal()">Cerrar</button>
             </footer>
         </div>

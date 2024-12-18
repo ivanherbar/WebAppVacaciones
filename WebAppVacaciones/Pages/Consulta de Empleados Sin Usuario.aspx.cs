@@ -54,13 +54,17 @@ namespace WebAppVacaciones.Pages
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 GridViewRow row = gridDetallesEmpleado.Rows[rowIndex];
 
-                // Asigna los valores de la fila a los controles del modal
-                txtNombre.Text = row.Cells[1].Text; // Nombre
-                DropDownListPuesto.SelectedValue = ObtenerPuesto(row.Cells[2].Text); // Selecciona el Puesto en el DropdownList
-                txtFechaIngreso.Text = DateTime.Parse(row.Cells[3].Text).ToString("yyyy-MM-dd"); // Fecha Ingreso
-                ddlPDV.SelectedValue = ObtenerIdPDV(row.Cells[4].Text); // Selecciona el PDV en el DropdownList
+                // Obtén el ID del empleado y guárdalo en el HiddenField
+                hfEmpleadoID.Value = row.Cells[0].Text; // ID_Empleado
+
+                // Asigna valores a los controles del modal
+                txtNombre.Text = row.Cells[1].Text;
+                DropDownListPuesto.SelectedValue = ObtenerPuesto(row.Cells[2].Text);
+                txtFechaIngreso.Text = DateTime.Parse(row.Cells[3].Text).ToString("yyyy-MM-dd");
+                ddlPDV.SelectedValue = ObtenerIdPDV(row.Cells[4].Text);
 
                 ScriptManager.RegisterStartupScript(this, GetType(), "abrirModal", "abrirModal();", true);
+
             }
             else if (e.CommandName == "Eliminar")
             {
@@ -180,6 +184,44 @@ namespace WebAppVacaciones.Pages
             MostrarMensaje("Empleado eliminado correctamente.", false);
             CargarDatos();
         }
+
+
+        protected void btnGuardar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Obtener la conexión desde el archivo Web.config
+                string connectionString = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
+
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand("sp_ModificarEmpleado", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        // Parámetros obtenidos desde los controles del modal
+                        cmd.Parameters.AddWithValue("@ID_Empleado", Convert.ToInt32(hfEmpleadoID.Value)); // HiddenField para ID del empleado
+                        cmd.Parameters.AddWithValue("@Nombre", txtNombre.Text.Trim());
+                        cmd.Parameters.AddWithValue("@Puesto", DropDownListPuesto.SelectedItem.Text);
+                        cmd.Parameters.AddWithValue("@Fecha_Ingreso", Convert.ToDateTime(txtFechaIngreso.Text.Trim()));
+                        cmd.Parameters.AddWithValue("@ID_PDV", Convert.ToInt32(ddlPDV.SelectedValue));
+
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+
+                        MostrarMensaje("Empleado actualizado exitosamente.", false);
+                    }
+                }
+
+                // Recargar los datos de la tabla después de guardar
+                CargarDatos();
+            }
+            catch (Exception ex)
+            {
+                MostrarMensaje("Error al actualizar empleado: " + ex.Message, true);
+            }
+        }
+
 
         private void MostrarMensaje(string mensaje, bool esError)
         {
