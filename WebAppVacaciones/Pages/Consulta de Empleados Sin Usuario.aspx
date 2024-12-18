@@ -72,16 +72,16 @@
                         <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
                         <asp:BoundField DataField="Puesto" HeaderText="Puesto" />
                         <asp:BoundField DataField="Fecha_Ingreso" HeaderText="Fecha Ingreso" DataFormatString="{0:yyyy-MM-dd}" />
+                        <asp:BoundField DataField="ID_PDV" HeaderText="ID PDV" />
                         <asp:BoundField DataField="Nombre_PDV" HeaderText="PDV" />
                         <asp:TemplateField HeaderText="Acciones">
                             <ItemTemplate>
-                                <!-- Botón para abrir el modal -->
                                 <asp:Button
                                     ID="btnActualizar"
                                     runat="server"
                                     Text="Actualizar"
                                     CommandName="Actualizar"
-                                    CommandArgument='<%# Eval("ID_Empleado") %>'
+                                    CommandArgument='<%# Container.DataItemIndex %>'
                                     CssClass="button is-warning boton-estandar" />
                                 <asp:Button
                                     ID="btnEliminar"
@@ -94,10 +94,10 @@
                         </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
+
             </div>
         </div>
     </section>
-
     <!-- Modal para mostrar las vacaciones -->
     <div class="modal" id="modalModificarEmpleadoSinUsuario">
         <div class="modal-background"></div>
@@ -123,9 +123,18 @@
                 <div class="field">
                     <label class="label">Fecha de Ingreso</label>
                     <div class="control">
-                        <asp:TextBox ID="txtFechaIngreso" runat="server" CssClass="input" Placeholder="AAAA-MM-DD"></asp:TextBox>
+                        <asp:TextBox ID="txtFechaIngreso" runat="server" CssClass="input" TextMode="Date"></asp:TextBox>
                     </div>
                 </div>
+
+
+                <div class="field">
+                    <label class="label">ID PDV</label>
+                    <div class="control">
+                        <asp:TextBox ID="txtID_PDV" runat="server" CssClass="input" Placeholder="ID PDV"></asp:TextBox>
+                    </div>
+                </div>
+
 
                 <div class="field">
                     <label class="label">PDV</label>
@@ -141,13 +150,17 @@
         </div>
     </div>
 
+
     <script>
         function abrirModal() {
-            document.getElementById('modalModificarEmpleadoSinUsuario').classList.add('is-active');
+            var modal = document.getElementById('modalModificarEmpleadoSinUsuario');
+            modal.classList.add('is-active');
         }
 
         function cerrarModal() {
-            document.getElementById('modalModificarEmpleadoSinUsuario').classList.remove('is-active');
+            var modal = document.getElementById('modalModificarEmpleadoSinUsuario');
+            modal.classList.remove('is-active');
         }
+
     </script>
 </asp:Content>

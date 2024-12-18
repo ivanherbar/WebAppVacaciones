@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Configuration;
-using System.Data.SqlClient;
 using System.Data;
+using System.Data.SqlClient;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -14,6 +14,7 @@ namespace WebAppVacaciones.Pages
             if (!IsPostBack)
             {
                 CargarDatos();
+                CargarPDV();
             }
         }
 
@@ -45,125 +46,93 @@ namespace WebAppVacaciones.Pages
             CargarDatos(filtro);
         }
 
-        // Manejo del comando para las acciones de actualizar y eliminar
         protected void gridDetallesEmpleado_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if (e.CommandName == "Eliminar")
-            {
-                // Obtener el ID del empleado desde CommandArgument
-                int idEmpleado = Convert.ToInt32(e.CommandArgument);
-
-                // Llamar al método para eliminar
-                EliminarUsuario(idEmpleado);
-            }
             if (e.CommandName == "Actualizar")
             {
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+                GridViewRow row = gridDetallesEmpleado.Rows[rowIndex];
 
-                CargarPDV();
+                // Asigna los valores de la fila a los controles del modal
+                txtNombre.Text = row.Cells[1].Text; // Nombre
+                txtPuesto.Text = row.Cells[2].Text; // Puesto
+                txtFechaIngreso.Text = DateTime.Parse(row.Cells[3].Text).ToString("yyyy-MM-dd"); // Fecha Ingreso
+                txtID_PDV.Text = row.Cells[4].Text; // PDV
+                ddlPDV.SelectedValue = ObtenerIdPDV(row.Cells[5].Text); // Selecciona el PDV en el DropdownList
 
-                // Abrir el modal para mostrar los registros de vacaciones
                 ScriptManager.RegisterStartupScript(this, GetType(), "abrirModal", "abrirModal();", true);
             }
-
+            else if (e.CommandName == "Eliminar")
+            {
+                int idEmpleado = Convert.ToInt32(e.CommandArgument);
+                EliminarUsuario(idEmpleado);
+            }
         }
 
-
-        // Método para cargar el DropDownList de PDV (Punto de Venta) desde la base de datos
-        private void CargarPDV()
+        private string ObtenerIdPDV(string nombrePDV)
         {
-            // Obtener la cadena de conexión desde el archivo Web.config
             string connectionString = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
 
-            // Se utiliza una conexión a la base de datos SQL Server
             using (SqlConnection con = new SqlConnection(connectionString))
             {
-                // Usar un procedimiento almacenado llamado "sp_consultar_pdv"
-                SqlCommand cmd = new SqlCommand("sp_consultar_pdv", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                try
+                using (SqlCommand cmd = new SqlCommand("SELECT ID_PDV FROM PDV WHERE Nombre_PDV = @NombrePDV", con))
                 {
-                    // Abre la conexión a la base de datos
+                    cmd.Parameters.AddWithValue("@NombrePDV", nombrePDV);
                     con.Open();
-                    // Ejecuta el procedimiento y obtiene los resultados
+                    object result = cmd.ExecuteScalar();
+                    return result?.ToString() ?? "0";
+                }
+            }
+        }
+
+        private void CargarPDV()
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("sp_consultar_pdv", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    con.Open();
                     SqlDataReader reader = cmd.ExecuteReader();
 
-                    // Establece los datos del DropDownList
                     ddlPDV.DataSource = reader;
-                    ddlPDV.DataTextField = "Nombre_PDV";  // El nombre que se mostrará en el DropDownList
-                    ddlPDV.DataValueField = "ID_PDV";     // El valor que se almacenará internamente
+                    ddlPDV.DataTextField = "Nombre_PDV";
+                    ddlPDV.DataValueField = "ID_PDV";
                     ddlPDV.DataBind();
-                }
-                catch (Exception ex)
-                {
-                    // En caso de error, muestra un mensaje
-                    MostrarMensaje("Error al cargar PDV: " + ex.Message, true);
                 }
             }
 
-            // Añade un elemento predeterminado al inicio del DropDownList
             ddlPDV.Items.Insert(0, new ListItem("Seleccione un PDV", "0"));
         }
-
-        private void MostrarMensaje(string mensaje, bool esError)
-        {
-            // Determina el tipo de alerta según si es error o éxito
-            string tipoAlerta = esError ? "error" : "success";
-            // Mostrar una alerta en pantalla con el mensaje
-            string script = $"alert('{mensaje}');"; // Aquí podrías usar toastr, alert, u otra librería de notificaciones
-
-            // Registrar el script para ejecutarlo en la página web
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "alertMessage", script, true);
-        }
-
 
         private void EliminarUsuario(int idEmpleado)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection con = new SqlConnection(connectionString))
             {
-                using (SqlCommand cmd = new SqlCommand("sp_EliminarEmpleado", connection))
+                using (SqlCommand cmd = new SqlCommand("sp_EliminarEmpleado", con))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@ID_Empleado", idEmpleado);
 
-                    // Parámetro para capturar el valor de retorno
-                    SqlParameter returnValue = new SqlParameter();
-                    returnValue.Direction = ParameterDirection.ReturnValue;
-                    cmd.Parameters.Add(returnValue);
-
-                    connection.Open();
+                    con.Open();
                     cmd.ExecuteNonQuery();
+                }
+            }
 
-                    int resultadoOperacion = (int)returnValue.Value;
-
-
-                    CargarDatos(); // Recargar la lista de usuarios
-                    // Mostrar notificaciones basadas en el código de retorno
-                    if (resultadoOperacion == 1)
-                    {
-                        MostrarNotificacion("El empleado fue eliminado correctamente.", "success");
-                    }
-                    else if (resultadoOperacion == -1)
-                    {
-                        MostrarNotificacion("El empleado no existe.", "warning");
-                    }
-                    else
-                    {
-                        MostrarNotificacion("Ocurrió un error al intentar eliminar el empleado.", "error");
-                    }
-                } // SqlCommand se libera aquí
-            } // SqlConnection se cierra automáticamente aquí
-
+            MostrarMensaje("Empleado eliminado correctamente.", false);
+            CargarDatos();
         }
-        // Método para mostrar notificaciones
-        private void MostrarNotificacion(string mensaje, string tipo)
+
+        private void MostrarMensaje(string mensaje, bool esError)
         {
-            string script = $"Swal.fire({{ text: '{mensaje}', icon: '{tipo}', timer: 3000, showConfirmButton: false }});";
-            ScriptManager.RegisterStartupScript(this, GetType(), "showNotification", script, true);
+            string tipoAlerta = esError ? "error" : "success";
+            string script = $"Swal.fire({{ title: '{mensaje}', icon: '{tipoAlerta}' }});";
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", script, true);
         }
-
-
     }
 }
