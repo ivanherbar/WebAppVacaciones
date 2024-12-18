@@ -42,13 +42,13 @@ namespace WebAppVacaciones.Pages
         protected global::System.Web.UI.WebControls.TextBox txtNombre;
 
         /// <summary>
-        /// Control txtPuesto.
+        /// Control DropDownListPuesto.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPuesto;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownListPuesto;
 
         /// <summary>
         /// Control txtFechaIngreso.
@@ -58,15 +58,6 @@ namespace WebAppVacaciones.Pages
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtFechaIngreso;
-
-        /// <summary>
-        /// Control txtID_PDV.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtID_PDV;
 
         /// <summary>
         /// Control ddlPDV.

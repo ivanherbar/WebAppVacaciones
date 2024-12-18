@@ -72,7 +72,6 @@
                         <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
                         <asp:BoundField DataField="Puesto" HeaderText="Puesto" />
                         <asp:BoundField DataField="Fecha_Ingreso" HeaderText="Fecha Ingreso" DataFormatString="{0:yyyy-MM-dd}" />
-                        <asp:BoundField DataField="ID_PDV" HeaderText="ID PDV" />
                         <asp:BoundField DataField="Nombre_PDV" HeaderText="PDV" />
                         <asp:TemplateField HeaderText="Acciones">
                             <ItemTemplate>
@@ -113,25 +112,19 @@
                     </div>
                 </div>
 
+
                 <div class="field">
                     <label class="label">Puesto</label>
                     <div class="control">
-                        <asp:TextBox ID="txtPuesto" runat="server" CssClass="input" Placeholder="Puesto del empleado"></asp:TextBox>
+                        <asp:DropDownList ID="DropDownListPuesto" runat="server" CssClass="input"></asp:DropDownList>
                     </div>
                 </div>
+
 
                 <div class="field">
                     <label class="label">Fecha de Ingreso</label>
                     <div class="control">
                         <asp:TextBox ID="txtFechaIngreso" runat="server" CssClass="input" TextMode="Date"></asp:TextBox>
-                    </div>
-                </div>
-
-
-                <div class="field">
-                    <label class="label">ID PDV</label>
-                    <div class="control">
-                        <asp:TextBox ID="txtID_PDV" runat="server" CssClass="input" Placeholder="ID PDV"></asp:TextBox>
                     </div>
                 </div>
 
