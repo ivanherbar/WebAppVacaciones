@@ -76,7 +76,7 @@
                         <asp:BoundField DataField="Dias_Disfrutados" HeaderText="Días Disfrutados" />
                         <asp:TemplateField HeaderText="Vacaciones">
                             <ItemTemplate>
-                                <asp:Button ID="btnVacaciones" runat="server" Text="Consultar" CommandName="Consultar" CommandArgument='<%# Eval("ID_Empleado") %>' CssClass="button is-info boton-estandar" />
+                                <asp:Button ID="btnConsultar" runat="server" Text="Consultar" CommandName="Consultar" CommandArgument='<%# Eval("ID_Empleado") %>' CssClass="button is-info boton-estandar" />
                                 <asp:Button ID="btnActualizar" runat="server" Text="Solicitar" CssClass="button is-warning boton-estandar" OnClientClick="abrirModalSeleccionarDia(); return false;" />
                             </ItemTemplate>
                         </asp:TemplateField>
@@ -117,7 +117,7 @@
         }
 
         function cerrarModal() {
-            document.getElementById('modalVacacione    s').classList.remove('is-active');
+            document.getElementById('modalVacaciones').classList.remove('is-active');
         }
     </script>
 

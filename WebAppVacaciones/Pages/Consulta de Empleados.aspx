@@ -135,7 +135,7 @@
         }
 
         function cerrarModal() {
-            document.getElementById('modalVacacione    s').classList.remove('is-active');
+            document.getElementById('modalVacaciones').classList.remove('is-active');
         }
     </script>
 
