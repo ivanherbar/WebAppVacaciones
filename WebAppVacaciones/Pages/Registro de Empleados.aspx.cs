@@ -109,7 +109,7 @@ namespace WebAppVacaciones
             int idPDV = Convert.ToInt32(ddlPDV.SelectedValue); // Obtener el PDV seleccionado
 
             // Verificar que todos los campos estén completos y sean válidos
-            if (string.IsNullOrEmpty(nombre) || string.IsNullOrEmpty(puesto) || !fechaValida || idPDV == 0)
+            if (string.IsNullOrEmpty(nombre) || puesto == "0" || !fechaValida || idPDV == 0)
             {
                 MostrarMensaje("Por favor, complete todos los campos correctamente.", true);
                 return;
