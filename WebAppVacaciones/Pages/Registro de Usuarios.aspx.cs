@@ -34,6 +34,7 @@ namespace WebAppVacaciones.Pages
             }
             else if (ddlRol.SelectedValue == "2") // Empleado
             {
+                txtNombre.Enabled = false;
                 ddlIDEmpleado.Enabled = true;
                 CargarEmpleadosSinUsuario(); // Cargar empleados cuando se selecciona "Empleado"
             }
