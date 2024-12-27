@@ -25,7 +25,7 @@ namespace WebAppVacaciones.Pages
         private void CargarDatos(int EmpleadoLogeado)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
-            
+
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 using (SqlCommand command = new SqlCommand("sp_datos_UsuarioLogueado", con))
@@ -163,8 +163,6 @@ namespace WebAppVacaciones.Pages
                 }
             }
         }
-
-
 
     }
 }

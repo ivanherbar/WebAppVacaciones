@@ -1,11 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/Empleado.Master" AutoEventWireup="true" CodeBehind="EmpleadoInfo.aspx.cs" Inherits="WebAppVacaciones.Pages.EmpleadoInfo" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="server">
-    Tu Información
+     Tu Información
 </asp:Content>
-
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
-    <style>
+   <style>
         .boton-estandar {
             width: 120px;
             height: 40px;
@@ -40,9 +39,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </asp:Content>
-
 <asp:Content ID="Content3" ContentPlaceHolderID="body" runat="server">
-    <section class="hero custom-hero">
+     <section class="hero custom-hero">
         <div class="hero-body">
             <div class="container">
                 <h1 class="title">Tu Información</h1>
@@ -76,8 +74,8 @@
                         <asp:BoundField DataField="Dias_Disfrutados" HeaderText="Días Disfrutados" />
                         <asp:TemplateField HeaderText="Vacaciones">
                             <ItemTemplate>
-                                <asp:Button ID="btnConsultar" runat="server" Text="Consultar" CommandName="Consultar" CommandArgument='<%# Eval("ID_Empleado") %>' CssClass="button is-info boton-estandar" />
-                                <asp:Button ID="btnActualizar" runat="server" Text="Solicitar" CssClass="button is-warning boton-estandar" OnClientClick="abrirModalSeleccionarDia(); return false;" />
+                                <asp:Button ID="btnVacaciones" runat="server" Text="Consultar" CommandName="Consultar" CommandArgument='<%# Eval("ID_Empleado") %>' CssClass="button is-info boton-estandar" />
+                                <asp:Button ID="btnActualizar" runat="server" Text="Solicitar" CommandName="Actualizar" CommandArgument='<%# Eval("ID_Empleado") %>' CssClass="button is-warning boton-estandar" />
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
@@ -117,64 +115,7 @@
         }
 
         function cerrarModal() {
-            document.getElementById('modalVacaciones').classList.remove('is-active');
+            document.getElementById('modalVacacione    s').classList.remove('is-active');
         }
     </script>
-
-<!-- Modal para seleccionar día de vacaciones -->
-<div class="modal" id="modalSeleccionarDia">
-    <div class="modal-background"></div>
-    <div class="modal-card">
-        <header class="modal-card-head">
-            <p class="modal-card-title">Seleccionar Día de Vacaciones</p>
-        </header>
-        <section class="modal-card-body">
-                <div class="field">
-                    <label class="label">Fecha Ingreso</label>
-                    <div class="control">
-                        <asp:TextBox CssClass="input" ID="TextFechaVacaciones" runat="server" Placeholder="Fecha_Vacaciones" Required="true" TextMode="Date"></asp:TextBox>
-                    </div>
-                </div>
-        </section>
-        <footer class="modal-card-foot">
-            <button class="button is-success" onclick="enviarSolicitud()">Solicitar</button>
-            <button class="button" onclick="cerrarModalSeleccionarDia()">Cancelar</button>
-        </footer>
-    </div>
-</div>
-
-<script>
-    // Establecer la fecha mínima como hoy
-    document.addEventListener("DOMContentLoaded", function () {
-        const today = new Date();
-        const minDate = new Date(today.setDate(today.getDate() + 1)).toISOString().split('T')[0]; // Mínimo mañana
-        const maxDate = new Date(today.setFullYear(today.getFullYear() + 1)).toISOString().split('T')[0]; // Máximo un año
-        const inputFecha = document.getElementById('fechaVacaciones');
-        inputFecha.setAttribute('min', minDate);
-        inputFecha.setAttribute('max', maxDate);
-    });
-
-    function abrirModalSeleccionarDia() {
-        document.getElementById('modalSeleccionarDia').classList.add('is-active');
-    }
-
-    function cerrarModalSeleccionarDia() {
-        document.getElementById('modalSeleccionarDia').classList.remove('is-active');
-    }
-
-    function enviarSolicitud() {
-        const fecha = document.getElementById('fechaVacaciones').value;
-        if (!fecha) {
-            Swal.fire('Error', 'Por favor selecciona una fecha.', 'error');
-            return;
-        }
-
-        Swal.fire('Solicitud enviada', `Has solicitado el día ${fecha} como vacaciones.`, 'success');
-        cerrarModalSeleccionarDia();
-    }
-</script>
-
-
-
-
 </asp:Content>
