@@ -16,6 +16,11 @@ namespace WebAppVacaciones.Pages
                 CargarDatos();
                 CargarPDV();
                 CargarPuestos(); // Cargar el DropDownList de Puestos desde la base de datos
+
+                DropDownListDia.Items.Add(new ListItem("Seleccionar tipo de dia", ""));
+                DropDownListDia.Items.Add(new ListItem("Mañana", "1"));
+                DropDownListDia.Items.Add(new ListItem("Tarde", "2"));
+                DropDownListDia.Items.Add(new ListItem("Dia completo", "3"));
             }
         }
 
@@ -51,8 +56,11 @@ namespace WebAppVacaciones.Pages
         {
             int userId = Convert.ToInt32(e.CommandArgument);
 
-
-            if (e.CommandName == "Consultar")
+            if (e.CommandName == "Agregar")
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "abrirModalVadAdd", "abrirModalVadAdd();", true);
+            }
+            else if (e.CommandName == "Consultar")
             {
                 CargarVacaciones(userId);
             }

@@ -62,7 +62,7 @@
                     </div>
                 </div>
 
-                <asp:GridView 
+                <asp:GridView
                     ID="gridDetallesEmpleado"
                     runat="server"
                     CssClass="table is-striped is-bordered is-hoverable"
@@ -88,8 +88,21 @@
                         <asp:BoundField DataField="Dias_Disfrutados" HeaderText="Días Disfrutados" />
                         <asp:TemplateField HeaderText="Acciones">
                             <ItemTemplate>
-                                <asp:Button ID="btnVacaciones" runat="server" Text="Vacaciones" CommandName="Consultar" CommandArgument='<%# Eval("ID_Empleado") %>' CssClass="button is-info boton-estandar" />
-                                <asp:Button 
+                                <asp:Button
+                                    ID="btnAgregar"
+                                    runat="server"
+                                    Text="Agregar"
+                                    CommandName="Agregar"
+                                    CommandArgument='<%# Eval("ID_Empleado") %>'
+                                    CssClass="button is-success boton-estandar" />
+                                <asp:Button
+                                    ID="btnVacaciones"
+                                    runat="server"
+                                    Text="Consultar"
+                                    CommandName="Consultar"
+                                    CommandArgument='<%# Eval("ID_Empleado") %>'
+                                    CssClass="button is-info boton-estandar" />
+                                <asp:Button
                                     ID="btnActualizar"
                                     runat="server"
                                     Text="Actualizar"
@@ -97,7 +110,14 @@
                                     CommandArgument='<%# 
                                     Container.DataItemIndex %>'
                                     CssClass="button is-warning boton-estandar" />
-                                <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CommandName="Eliminar" CommandArgument='<%# Eval("ID_Empleado") %>' CssClass="button is-danger boton-estandar" /></ItemTemplate>
+                                <asp:Button
+                                    ID="btnEliminar"
+                                    runat="server"
+                                    Text="Eliminar"
+                                    CommandName="Eliminar"
+                                    CommandArgument='<%# Eval("ID_Empleado") %>'
+                                    CssClass="button is-danger boton-estandar" />
+                            </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
@@ -144,7 +164,7 @@
 
 
 
-        <!-- Modal para modificar las vacaciones -->
+    <!-- Modal para modificar las vacaciones -->
     <div class="modal" id="modalModificarEmpleado">
         <div class="modal-background"></div>
         <div class="modal-card">
@@ -208,14 +228,68 @@
     </script>
 
 
+    <script>
+        function abrirModalMod() {
+            var modal = document.getElementById('modalModificarEmpleado');
+            modal.classList.add('is-active');
+        }
+
+        function cerrarModalMod() {
+            var modal = document.getElementById('modalModificarEmpleado');
+            modal.classList.remove('is-active');
+        }
+    </script>
+
+
+
+
+    <!-- Modal para modificar las vacaciones -->
+    <div class="modal" id="modalAgregarVacacion">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Agregar Dia de Vacaciones</p>
+            </header>
+            <section class="modal-card-body">
+
+                <div class="field">
+                    <label class="label">Tipo de dia</label>
+                    <div class="control">
+                        <asp:DropDownList ID="DropDownListDia" runat="server" CssClass="input"></asp:DropDownList>
+                    </div>
+                </div>
+
+
+                <div class="field">
+                    <label class="label">Fecha de Ingreso</label>
+                    <div class="control">
+                        <asp:TextBox ID="TextBox2" runat="server" CssClass="input" TextMode="Date"></asp:TextBox>
+                    </div>
+                </div>
+
+            </section>
+            <footer class="modal-card-foot">
+                <asp:Button
+                    ID="Button1"
+                    runat="server"
+                    CssClass="button is-primary"
+                    Text="Guardar"
+                    OnClick="btnGuardar_Click" />
+                <asp:HiddenField ID="HiddenField1" runat="server" />
+
+                <button class="button" onclick="cerrarModal()">Cerrar</button>
+            </footer>
+        </div>
+    </div>
+
         <script>
-            function abrirModalMod() {
-                var modal = document.getElementById('modalModificarEmpleado');
+            function abrirModalVadAdd() {
+                var modal = document.getElementById('modalAgregarVacacion');
                 modal.classList.add('is-active');
             }
 
-            function cerrarModalMod() {
-                var modal = document.getElementById('modalModificarEmpleado');
+            function cerrarModalVadAdd() {
+                var modal = document.getElementById('modalAgregarVacacion');
                 modal.classList.remove('is-active');
             }
         </script>
