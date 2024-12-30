@@ -251,14 +251,12 @@
                 <p class="modal-card-title">Agregar Dia de Vacaciones</p>
             </header>
             <section class="modal-card-body">
-
                 <div class="field">
                     <label class="label">Tipo de dia</label>
                     <div class="control">
                         <asp:DropDownList ID="DropDownListDia" runat="server" CssClass="input"></asp:DropDownList>
                     </div>
                 </div>
-
 
                 <div class="field">
                     <label class="label">Fecha de Ingreso</label>

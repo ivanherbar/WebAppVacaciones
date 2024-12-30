@@ -13,7 +13,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 80vh; /* Centra el contenido verticalmente */
+            height: 80vh;   
             text-align: center;
         }
 
