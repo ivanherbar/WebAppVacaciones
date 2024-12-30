@@ -19,6 +19,11 @@ namespace WebAppVacaciones.Pages
             if (!IsPostBack)
             {
                 CargarDatos(EmpleadoLogeado);
+
+                DropDownListDia.Items.Add(new ListItem("Seleccionar tipo de dia", ""));
+                DropDownListDia.Items.Add(new ListItem("Mañana", "1"));
+                DropDownListDia.Items.Add(new ListItem("Tarde", "2"));
+                DropDownListDia.Items.Add(new ListItem("Dia completo", "3"));
             }
         }
 
