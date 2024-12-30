@@ -74,8 +74,23 @@
                         <asp:BoundField DataField="Dias_Disfrutados" HeaderText="Días Disfrutados" />
                         <asp:TemplateField HeaderText="Vacaciones">
                             <ItemTemplate>
-                                <asp:Button ID="btnVacaciones" runat="server" Text="Consultar" CommandName="Consultar" CommandArgument='<%# Eval("ID_Empleado") %>' CssClass="button is-info boton-estandar" />
-                                <asp:Button ID="btnActualizar" runat="server" Text="Solicitar" CommandName="Actualizar" CommandArgument='<%# Eval("ID_Empleado") %>' CssClass="button is-warning boton-estandar" />
+                                <asp:Button 
+                                    ID="btnVacaciones" 
+                                    runat="server" 
+                                    Text="Consultar" 
+                                    CommandName="Consultar" 
+                                    CommandArgument='<%# Eval("ID_Empleado") %>' 
+                                    CssClass="button is-info boton-estandar" 
+                                    />
+                                <asp:Button
+                                    ID="btnSolicitar"
+                                    runat="server"
+                                    Text="Solicitar"
+                                    CommandName="Solicitar"
+                                    CommandArgument='<%# Eval("ID_Empleado") %>'
+                                    CssClass="button is-success boton-estandar"
+                                    OnClientClick="abrirModalVadAdd(); return false;" />
+
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
@@ -115,7 +130,59 @@
         }
 
         function cerrarModal() {
-            document.getElementById('modalVacacione    s').classList.remove('is-active');
+            document.getElementById('modalVacaciones').classList.remove('is-active');
         }
     </script>
+
+    <!-- Modal para modificar las vacaciones -->
+<div class="modal" id="modalSolicitarVacacion">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">Solicitar Dia de Vacaciones</p>
+        </header>
+        <section class="modal-card-body">
+
+            <div class="field">
+                <label class="label">Tipo de dia</label>
+                <div class="control">
+                    <asp:DropDownList ID="DropDownListDia" runat="server" CssClass="input"></asp:DropDownList>
+                </div>
+            </div>
+
+
+            <div class="field">
+                <label class="label">Fecha de Ingreso</label>
+                <div class="control">
+                    <asp:TextBox ID="TextBox2" runat="server" CssClass="input" TextMode="Date"></asp:TextBox>
+                </div>
+            </div>
+
+        </section>
+        <footer class="modal-card-foot">
+            <asp:Button
+                ID="Button1"
+                runat="server"
+                CssClass="button is-primary"
+                Text="Guardar"
+                />
+            <asp:HiddenField ID="HiddenField1" runat="server" />
+
+            <button class="button" onclick="cerrarModal()">Cerrar</button>
+        </footer>
+    </div>
+</div>
+
+    <script>
+        function abrirModalVadAdd() {
+            var modal = document.getElementById('modalSolicitarVacacion');
+            modal.classList.add('is-active');
+        }
+
+        function cerrarModalVadAdd() {
+            var modal = document.getElementById('modalSolicitarVacacion');
+            modal.classList.remove('is-active');
+        }
+    </script>
+
 </asp:Content>
