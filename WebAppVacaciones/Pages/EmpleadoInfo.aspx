@@ -1,10 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/Empleado.Master" AutoEventWireup="true" CodeBehind="EmpleadoInfo.aspx.cs" Inherits="WebAppVacaciones.Pages.EmpleadoInfo" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="server">
-     Tu Información
+    Tu Información
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
-   <style>
+    <style>
         .boton-estandar {
             width: 120px;
             height: 40px;
@@ -40,7 +40,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="body" runat="server">
-     <section class="hero custom-hero">
+    <section class="hero custom-hero">
         <div class="hero-body">
             <div class="container">
                 <h1 class="title">Tu Información</h1>
@@ -53,7 +53,7 @@
     <section class="section">
         <div class="centered-container">
             <div class="container container-custom">
-                
+
 
                 <asp:GridView ID="gridDetallesEmpleado" runat="server" CssClass="table is-striped is-bordered is-hoverable" AutoGenerateColumns="false" OnRowCommand="gridDetallesEmpleado_RowCommand">
                     <Columns>
@@ -74,14 +74,13 @@
                         <asp:BoundField DataField="Dias_Disfrutados" HeaderText="Días Disfrutados" />
                         <asp:TemplateField HeaderText="Vacaciones">
                             <ItemTemplate>
-                                <asp:Button 
-                                    ID="btnVacaciones" 
-                                    runat="server" 
-                                    Text="Consultar" 
-                                    CommandName="Consultar" 
-                                    CommandArgument='<%# Eval("ID_Empleado") %>' 
-                                    CssClass="button is-info boton-estandar" 
-                                    />
+                                <asp:Button
+                                    ID="btnVacaciones"
+                                    runat="server"
+                                    Text="Consultar"
+                                    CommandName="Consultar"
+                                    CommandArgument='<%# Eval("ID_Empleado") %>'
+                                    CssClass="button is-info boton-estandar" />
                                 <asp:Button
                                     ID="btnSolicitar"
                                     runat="server"
@@ -134,44 +133,49 @@
         }
     </script>
 
-    <!-- Modal para modificar las vacaciones -->
-<div class="modal" id="modalSolicitarVacacion">
-    <div class="modal-background"></div>
-    <div class="modal-card">
-        <header class="modal-card-head">
-            <p class="modal-card-title">Solicitar Dia de Vacaciones</p>
-        </header>
-        <section class="modal-card-body">
+    <!-- Modal para solicitar vacaciones -->
+    <div class="modal" id="modalSolicitarVacacion">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Solicitar Dia de Vacaciones</p>
+            </header>
+            <section class="modal-card-body">
 
-            <div class="field">
-                <label class="label">Tipo de dia</label>
-                <div class="control">
-                    <asp:DropDownList ID="DropDownListDia" runat="server" CssClass="input"></asp:DropDownList>
+                <div class="field">
+                    <label class="label">Tipo de día</label>
+                    <div class="control">
+                        <asp:DropDownList ID="DropDownListDia" runat="server" CssClass="input" Required="true">
+                            <asp:ListItem Text="Seleccione..." Value="" />
+                            <asp:ListItem Text="Todo el día" Value="N"></asp:ListItem>
+                            <asp:ListItem Text="Mañana" Value="M"></asp:ListItem>
+                            <asp:ListItem Text="Tarde" Value="T"></asp:ListItem>
+                        </asp:DropDownList>
+                    </div>
                 </div>
-            </div>
 
 
-            <div class="field">
-                <label class="label">Fecha de Ingreso</label>
-                <div class="control">
-                    <asp:TextBox ID="TextBox2" runat="server" CssClass="input" TextMode="Date"></asp:TextBox>
+                <div class="field">
+                    <label class="label">Fecha de Ingreso</label>
+                    <div class="control">
+                        <asp:TextBox ID="TextBox2" runat="server" CssClass="input" TextMode="Date" Required="true"></asp:TextBox>
+                    </div>
                 </div>
-            </div>
 
-        </section>
-        <footer class="modal-card-foot">
-            <asp:Button
-                ID="Button1"
-                runat="server"
-                CssClass="button is-primary"
-                Text="Guardar"
-                />
-            <asp:HiddenField ID="HiddenField1" runat="server" />
+            </section>
+            <footer class="modal-card-foot">
+                <asp:Button
+                    ID="Button1"
+                    runat="server"
+                    CssClass="button is-primary"
+                    Text="Guardar" 
+                    OnClick="GuardarVacacion"/>
+                <asp:HiddenField ID="HiddenField1" runat="server" />
 
-            <button class="button" onclick="cerrarModal()">Cerrar</button>
-        </footer>
+                <button class="button" onclick="cerrarModal()">Cerrar</button>
+            </footer>
+        </div>
     </div>
-</div>
 
     <script>
         function abrirModalVadAdd() {
