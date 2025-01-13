@@ -77,7 +77,7 @@
                                 <asp:Button
                                     ID="btnVacaciones"
                                     runat="server"
-                                    Text="Consultar"
+                                    Text="Historial"
                                     CommandName="Consultar"
                                     CommandArgument='<%# Eval("ID_Empleado") %>'
                                     CssClass="button is-info boton-estandar" />
@@ -89,6 +89,13 @@
                                     CommandArgument='<%# Eval("ID_Empleado") %>'
                                     CssClass="button is-success boton-estandar"
                                     OnClientClick="abrirModalVadAdd(); return false;" />
+                                <asp:Button
+                                    ID="btnDiasSolicitados"
+                                    runat="server"
+                                    Text="Solicitados"
+                                    CommandName="Consultar"
+                                    CommandArgument='<%# Eval("ID_Empleado") %>'
+                                    CssClass="button is-warning boton-estandar" />
 
                             </ItemTemplate>
                         </asp:TemplateField>
@@ -143,14 +150,18 @@
             <section class="modal-card-body">
 
                 <div class="field">
-                    <label class="label">Tipo de día</label>
+                    <label class="label">Tipo de dia</label>
                     <div class="control">
-                        <asp:DropDownList ID="DropDownListDia" runat="server" CssClass="input" Required="true">
+
+                       
+                        <asp:DropDownList ID="DropDownListDia" runat="server" CssClass="input">
                             <asp:ListItem Text="Seleccione..." Value="" />
                             <asp:ListItem Text="Todo el día" Value="N"></asp:ListItem>
                             <asp:ListItem Text="Mañana" Value="M"></asp:ListItem>
                             <asp:ListItem Text="Tarde" Value="T"></asp:ListItem>
                         </asp:DropDownList>
+
+
                     </div>
                 </div>
 
@@ -158,7 +169,7 @@
                 <div class="field">
                     <label class="label">Fecha de Ingreso</label>
                     <div class="control">
-                        <asp:TextBox ID="TextBox2" runat="server" CssClass="input" TextMode="Date" Required="true"></asp:TextBox>
+                        <asp:TextBox ID="TextBox2" runat="server" CssClass="input" TextMode="Date"></asp:TextBox>
                     </div>
                 </div>
 
@@ -172,7 +183,7 @@
                     OnClick="GuardarVacacion"/>
                 <asp:HiddenField ID="HiddenField1" runat="server" />
 
-                <button class="button" onclick="cerrarModal()">Cerrar</button>
+                <button class="button" onclick="cerrarModalVadAdd()">Cerrar</button>
             </footer>
         </div>
     </div>

@@ -19,6 +19,7 @@ namespace WebAppVacaciones.Pages
             if (!IsPostBack)
             {
                 CargarDatos(EmpleadoLogeado);
+                ResetControls();
             }
         }
 
@@ -178,12 +179,15 @@ namespace WebAppVacaciones.Pages
 
                 // Llamar al procedimiento almacenado
                 EjecutarProcedimientoAlmacenado(empleadoId, fechaSolicitud, medioDia);
+                ResetControls();
             }
             else
             {
                 // Manejar error en la fecha
                 ScriptManager.RegisterStartupScript(this, GetType(), "alerta", "Swal.fire('Fecha inválida', '', 'error');", true);
+                ResetControls();
             }
+
         }
 
         private void EjecutarProcedimientoAlmacenado(int empleadoId, DateTime fecha, string medioDia)
@@ -227,6 +231,12 @@ namespace WebAppVacaciones.Pages
                     ScriptManager.RegisterStartupScript(this, GetType(), "alerta", $"Swal.fire('Error', '{ex.Message}', 'error');", true);
                 }
             }
+        }
+
+        private void ResetControls()
+        {
+            DropDownListDia.SelectedIndex = 0; // Seleccionar la primera opción
+            TextBox2.Text = ""; // Limpiar el campo de texto
         }
 
 
