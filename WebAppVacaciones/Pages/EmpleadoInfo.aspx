@@ -49,7 +49,7 @@
             </div>
         </div>
     </section>
-
+    
     <section class="section">
         <div class="centered-container">
             <div class="container container-custom">
@@ -105,7 +105,7 @@
         </div>
     </section>
 
-    <!-- Modal para mostrar las vacaciones -->
+    <!-- Modal para mostrar las vacacione -->
     <div class="modal" id="modalVacaciones">
         <div class="modal-background"></div>
         <div class="modal-card">
