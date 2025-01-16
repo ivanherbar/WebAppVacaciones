@@ -14,7 +14,7 @@
             display: flex;
             justify-content: center; /* Centrar horizontalmente */
         }
-
+        
         .container-custom {
             max-width: 1200px; /* Ajustar el tamaño máximo del contenedor */
             width: 100%; /* Asegurar que el contenedor ocupe el 100% del ancho disponible */
