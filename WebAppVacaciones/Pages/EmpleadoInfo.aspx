@@ -5,6 +5,8 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
     <style>
+
+
         .boton-estandar {
             width: 120px;
             height: 40px;
@@ -49,7 +51,7 @@
             </div>
         </div>
     </section>
-    
+
     <section class="section">
         <div class="centered-container">
             <div class="container container-custom">
@@ -93,7 +95,7 @@
                                     ID="btnDiasSolicitados"
                                     runat="server"
                                     Text="Solicitados"
-                                    CommandName="Consultar"
+                                    CommandName="Solicitados"
                                     CommandArgument='<%# Eval("ID_Empleado") %>'
                                     CssClass="button is-warning boton-estandar" />
 
@@ -114,7 +116,7 @@
 
             </header>
             <section class="modal-card-body">
-                <asp:GridView ID="gridVacaciones" runat="server" CssClass="table is-striped is-bordered" AutoGenerateColumns="false" OnRowCommand="gridVacaciones_RowCommand">
+                <asp:GridView ID="gridVacaciones" runat="server" CssClass="table is-striped is-bordered" AutoGenerateColumns="false">
                     <Columns>
                         <asp:BoundField DataField="ID_Empleado" HeaderText="ID Empleado" />
                         <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
@@ -153,7 +155,7 @@
                     <label class="label">Tipo de dia</label>
                     <div class="control">
 
-                       
+
                         <asp:DropDownList ID="DropDownListDia" runat="server" CssClass="input">
                             <asp:ListItem Text="Seleccione..." Value="" />
                             <asp:ListItem Text="Todo el día" Value="N"></asp:ListItem>
@@ -179,8 +181,8 @@
                     ID="Button1"
                     runat="server"
                     CssClass="button is-primary"
-                    Text="Guardar" 
-                    OnClick="GuardarVacacion"/>
+                    Text="Guardar"
+                    OnClick="GuardarVacacion" />
                 <asp:HiddenField ID="HiddenField1" runat="server" />
 
                 <button class="button" onclick="cerrarModalVadAdd()">Cerrar</button>
@@ -199,5 +201,65 @@
             modal.classList.remove('is-active');
         }
     </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- -->
+
+     <!-- Modal para mostrar las vacacione -->
+ <div class="modal" id="modalSolicitados">
+     <div class="modal-background"></div>
+     <div class="modal-card">
+         <header class="modal-card-head">
+             <p class="modal-card-title">Días de Vacaciones</p>
+
+         </header>
+         <section class="modal-card-body">
+             <asp:GridView ID="GridViewSolicitados" runat="server" CssClass="table is-striped is-bordered" AutoGenerateColumns="false">
+                 <Columns>
+                        <asp:BoundField DataField="ID_Empleado" HeaderText="ID Empleado" />
+                        <asp:BoundField DataField="Fecha" HeaderText="Fecha" />
+                        <asp:BoundField DataField="MedioDia" HeaderText="MedioDia" />
+                        <asp:BoundField DataField="Estado" HeaderText="Estado" />
+                        <asp:BoundField DataField="Comentarios" HeaderText="Comentarios" />
+                        <asp:BoundField DataField="Fecha_Solicitud" HeaderText ="Fecha Resolucion Solicitud" />
+                        <asp:BoundField DataField="Fecha_Resolucion" HeaderText="Fecha Resolucion" />
+                 </Columns>
+             </asp:GridView>
+
+         </section>
+         <footer class="modal-card-foot">
+             <button class="button" onclick="cerrarModal()">Cerrar</button>
+         </footer>
+     </div>
+ </div>
+
+    <script>
+        function abrirModalSolicitados() {
+            document.getElementById('modalSolicitados').classList.add('is-active');
+        }
+
+        function cerrarModalSolicitados() {
+            document.getElementById('modalSolicitados').classList.remove('is-active');
+        }
+    </script>
+       <!-- -->
+
+
+
+
+
+
+
 
 </asp:Content>
