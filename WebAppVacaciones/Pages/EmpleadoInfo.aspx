@@ -5,7 +5,23 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
     <style>
+        .modal-card.custom-modal {
+            width: auto; /* Ajusta el ancho automáticamente al contenido */
+            max-width: 90%; /* Limita el ancho máximo al 90% de la ventana */
+            height: auto; /* Ajusta la altura automáticamente */
+            max-height: 90vh; /* Limita la altura al 90% de la altura de la ventana */
+            overflow: visible; /* Evita que se recorte el contenido */
+        }
 
+        .modal-card-body.custom-modal-body {
+            padding: 1rem; /* Ajusta el espacio interno */
+        }
+
+        /* Ajusta el GridView para que no se desborde */
+        .table.custom-table {
+            table-layout: auto; /* Permite que las columnas se ajusten automáticamente */
+            width: 100%; /* Asegura que la tabla ocupe todo el espacio disponible */
+        }
 
         .boton-estandar {
             width: 120px;
@@ -94,7 +110,7 @@
                                 <asp:Button
                                     ID="btnDiasSolicitados"
                                     runat="server"
-                                    Text="Solicitados"
+                                    Text="Pendientes"
                                     CommandName="Solicitados"
                                     CommandArgument='<%# Eval("ID_Empleado") %>'
                                     CssClass="button is-warning boton-estandar" />
@@ -108,15 +124,16 @@
     </section>
 
     <!-- Modal para mostrar las vacacione -->
+
+
     <div class="modal" id="modalVacaciones">
         <div class="modal-background"></div>
-        <div class="modal-card">
+        <div class="modal-card custom-modal">
             <header class="modal-card-head">
-                <p class="modal-card-title">Días de Vacaciones</p>
-
+                <p class="modal-card-title">Días Solicitados Pendientes de Autorización</p>
             </header>
-            <section class="modal-card-body">
-                <asp:GridView ID="gridVacaciones" runat="server" CssClass="table is-striped is-bordered" AutoGenerateColumns="false">
+            <section class="modal-card-body custom-modal-body">
+                <asp:GridView ID="gridVacaciones" runat="server" CssClass="table is-responsive is-striped is-bordered" AutoGenerateColumns="false">
                     <Columns>
                         <asp:BoundField DataField="ID_Empleado" HeaderText="ID Empleado" />
                         <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
@@ -124,7 +141,6 @@
                         <asp:BoundField DataField="TipoDia" HeaderText="TipoDia" />
                     </Columns>
                 </asp:GridView>
-
             </section>
             <footer class="modal-card-foot">
                 <button class="button" onclick="cerrarModal()">Cerrar</button>
@@ -210,39 +226,32 @@
 
 
 
-
-
-
-
-    <!-- -->
-
-     <!-- Modal para mostrar las vacacione -->
- <div class="modal" id="modalSolicitados">
-     <div class="modal-background"></div>
-     <div class="modal-card">
-         <header class="modal-card-head">
-             <p class="modal-card-title">Días de Vacaciones</p>
-
-         </header>
-         <section class="modal-card-body">
-             <asp:GridView ID="GridViewSolicitados" runat="server" CssClass="table is-striped is-bordered" AutoGenerateColumns="false">
-                 <Columns>
+    <!-- Modal para mostrar las vacacione -->
+    <div class="modal" id="modalSolicitados">
+        <div class="modal-background"></div>
+        <div class="modal-card custom-modal">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Días Solicitados Pendientes de Autorización</p>
+            </header>
+            <section class="modal-card-body custom-modal-body">
+                <asp:GridView ID="GridViewSolicitados" runat="server" CssClass="table is-responsive is-striped is-bordered" AutoGenerateColumns="false">
+                    <Columns>
                         <asp:BoundField DataField="ID_Empleado" HeaderText="ID Empleado" />
                         <asp:BoundField DataField="Fecha" HeaderText="Fecha" />
-                        <asp:BoundField DataField="MedioDia" HeaderText="MedioDia" />
+                        <asp:BoundField DataField="MedioDia" HeaderText="Medio Día" />
                         <asp:BoundField DataField="Estado" HeaderText="Estado" />
                         <asp:BoundField DataField="Comentarios" HeaderText="Comentarios" />
-                        <asp:BoundField DataField="Fecha_Solicitud" HeaderText ="Fecha Resolucion Solicitud" />
-                        <asp:BoundField DataField="Fecha_Resolucion" HeaderText="Fecha Resolucion" />
-                 </Columns>
-             </asp:GridView>
+                        <asp:BoundField DataField="Fecha_Solicitud" HeaderText="Fecha Solicitud" />
+                        <asp:BoundField DataField="Fecha_Resolucion" HeaderText="Fecha Resolución" />
+                    </Columns>
+                </asp:GridView>
+            </section>
+            <footer class="modal-card-foot">
+                <button class="button" onclick="cerrarModal()">Cerrar</button>
+            </footer>
+        </div>
+    </div>
 
-         </section>
-         <footer class="modal-card-foot">
-             <button class="button" onclick="cerrarModal()">Cerrar</button>
-         </footer>
-     </div>
- </div>
 
     <script>
         function abrirModalSolicitados() {
@@ -253,7 +262,7 @@
             document.getElementById('modalSolicitados').classList.remove('is-active');
         }
     </script>
-       <!-- -->
+    <!-- -->
 
 
 
