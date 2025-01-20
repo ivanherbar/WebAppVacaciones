@@ -130,7 +130,7 @@
         <div class="modal-background"></div>
         <div class="modal-card custom-modal">
             <header class="modal-card-head">
-                <p class="modal-card-title">Días Solicitados Pendientes de Autorización</p>
+                <p class="modal-card-title">Historial Dias Disfrutados</p>
             </header>
             <section class="modal-card-body custom-modal-body">
                 <asp:GridView ID="gridVacaciones" runat="server" CssClass="table is-responsive is-striped is-bordered" AutoGenerateColumns="false">
@@ -216,6 +216,19 @@
             var modal = document.getElementById('modalSolicitarVacacion');
             modal.classList.remove('is-active');
         }
+
+
+        function disableOtherOptions() {
+            var ddl = document.getElementById('<%= DropDownListDia.ClientID %>');
+            for (var i = 2; i < ddl.options.length; i++) {
+                ddl.options[i].disabled = true;
+            }
+        }
+
+        // Llama a la función al cargar la página
+        window.onload = disableOtherOptions;
+
+
     </script>
 
 
@@ -238,7 +251,7 @@
                     <Columns>
                         <asp:BoundField DataField="ID_Empleado" HeaderText="ID Empleado" />
                         <asp:BoundField DataField="Fecha" HeaderText="Fecha" />
-                        <asp:BoundField DataField="MedioDia" HeaderText="Medio Día" />
+                        <asp:BoundField DataField="MedioDia" HeaderText="Tipo de Día" />
                         <asp:BoundField DataField="Estado" HeaderText="Estado" />
                         <asp:BoundField DataField="Comentarios" HeaderText="Comentarios" />
                         <asp:BoundField DataField="Fecha_Solicitud" HeaderText="Fecha Solicitud" />

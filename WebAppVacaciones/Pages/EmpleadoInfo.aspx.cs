@@ -61,7 +61,6 @@ namespace WebAppVacaciones.Pages
                 case "Solicitados":
                     CargarSolicitados(userId);
                 break;
-
             }
         }
 
